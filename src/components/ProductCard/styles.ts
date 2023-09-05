@@ -1,41 +1,5 @@
 import styled from 'styled-components'
 
-export const CoffeeListStyles = styled.section`
-  h2 {
-    font-family: 'Baloo 2';
-    max-width: 25.6rem;
-    font-size: 3.2rem;
-    margin: 3.2rem 0;
-  }
-  @media (max-width: 74rem) {
-    h2 {
-      margin: 3.2rem 8rem;
-    }
-  }
-  @media (max-width: 48rem) {
-    h2 {
-      margin: 3.2rem 4rem;
-    }
-  }
-`
-export const CoffeeListContainer = styled.section`
-  display: flex;
-  flex-direction: row;
-  /* justify-content: start; */
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 3.2rem;
-  /* margin: 0 32rem; */
-  /* max-width: 112rem; */
-  @media (max-width: 74rem) {
-    /* margin: 0 4rem; */
-    justify-content: space-around;
-  }
-  @media (max-width: 48rem) {
-    /* margin: 0 2rem; */
-    /* flex-wrap: wrap; */
-  }
-`
 export const CoffeeCard = styled.div`
   background: ${(props) => props.theme.base['base-card']};
   border-radius: 6px 36px 6px 36px;
