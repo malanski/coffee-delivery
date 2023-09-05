@@ -5,14 +5,14 @@ export const CoffeeListStyles = styled.section`
     font-family: 'Baloo 2';
     max-width: 25.6rem;
     font-size: 3.2rem;
-    margin: 3.2rem  0;
+    margin: 3.2rem 0;
   }
-  @media (max-width: 74.0rem) {
+  @media (max-width: 74rem) {
     h2 {
-      margin: 3.2rem  8rem;
+      margin: 3.2rem 8rem;
     }
   }
-  @media (max-width: 48.0rem) {
+  @media (max-width: 48rem) {
     h2 {
       margin: 3.2rem 4rem;
     }
@@ -26,12 +26,12 @@ export const CoffeeListContainer = styled.section`
   flex-wrap: wrap;
   gap: 3.2rem;
   /* margin: 0 32rem; */
-  max-width: 112rem;
-  @media (max-width: 74.0rem) {
+  /* max-width: 112rem; */
+  @media (max-width: 74rem) {
     /* margin: 0 4rem; */
     justify-content: space-around;
   }
-  @media (max-width: 48.0rem) {
+  @media (max-width: 48rem) {
     /* margin: 0 2rem; */
     /* flex-wrap: wrap; */
   }
@@ -40,7 +40,7 @@ export const CoffeeCard = styled.div`
   background: ${(props) => props.theme.base['base-card']};
   border-radius: 6px 36px 6px 36px;
   max-width: 25.6rem;
-  height: 31.0rem;
+  height: 31rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -49,7 +49,7 @@ export const CoffeeCard = styled.div`
   padding: 2.4rem;
   h3 {
     font-family: 'Baloo 2';
-    font-size: 2.0rem;
+    font-size: 2rem;
     color: ${(props) => props.theme.base['base-subtitle']};
     margin: 0.8rem 0;
   }
@@ -60,7 +60,7 @@ export const CoffeeCard = styled.div`
     color: ${(props) => props.theme.base['base-label']};
   }
   img {
-    margin-top: -4.0rem;
+    margin-top: -4rem;
   }
   @media (max-width: 849px) {
     min-width: calc(45vw - 2.4rem);
@@ -74,27 +74,27 @@ export const CoffeeCard = styled.div`
   }
 `
 export const CoffeeInfo = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 `
 export const OptionsStyle = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
-    width: 100%;
-    button {
-      font-size: 1rem;
-      background: ${(props) => props.theme.product['yellow-light']};
-      color: ${(props) => props.theme.product['yellow-dark']};
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 100px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  button {
+    font-size: 1rem;
+    background: ${(props) => props.theme.product['yellow-light']};
+    color: ${(props) => props.theme.product['yellow-dark']};
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 100px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
 `
 export const BuyQuantity = styled.div`
   display: flex;
@@ -105,7 +105,7 @@ export const BuyQuantity = styled.div`
   min-width: 7.2rem;
   height: 3.8rem;
   font-family: Roboto;
-  font-size: 1.6rem; 
+  font-size: 1.6rem;
   background: ${(props) => props.theme.base['base-button']};
   span {
     padding: 0.2rem;
@@ -122,17 +122,16 @@ export const BuyQuantity = styled.div`
   button:hover {
     transition: all ease-in-out 600ms;
     background: ${(props) => props.theme.base['base-label']};
-    border: 0.2rem solid ${(props) => props.theme.base['white']};
+    border: 0.2rem solid ${(props) => props.theme.base.white};
     svg {
       filter: invert();
     }
   }
 
-  @media (max-width: 591px)  {
+  @media (max-width: 591px) {
     max-width: 10.2rem;
     flex-grow: 1;
   }
-
 `
 export const BuyActions = styled.div`
   display: flex;
@@ -148,10 +147,9 @@ export const BuyActions = styled.div`
       font-family: 'baloo 2';
       font-size: 2.4rem;
       font-weight: 800;
-    }    
+    }
   }
   button {
-
   }
   button:hover {
     transition: all ease-in-out 600ms;
@@ -163,7 +161,7 @@ export const BuyActions = styled.div`
 `
 
 interface IconButton {
-  background: string;
+  background: string
 }
 export const BuyButton = styled.div<IconButton>`
   button {
@@ -174,8 +172,8 @@ export const BuyButton = styled.div<IconButton>`
     width: 3.8rem;
     height: 3.8rem;
     svg {
-      color: ${(props) => props.theme.base['white']};
+      color: ${(props) => props.theme.base.white};
       margin: auto;
     }
-}
+  }
 `

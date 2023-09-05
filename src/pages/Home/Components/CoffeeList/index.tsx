@@ -1,7 +1,16 @@
-import { BuyActions, BuyButton, BuyQuantity, CoffeeCard, CoffeeInfo, CoffeeListContainer, CoffeeListStyles, OptionsStyle } from "./style"
-import CoffeeDataList from '../../../../Data'
-import { Minus, Plus, ShoppingCart } from "phosphor-react"
-import { useTheme } from 'styled-components';
+import {
+  BuyActions,
+  BuyButton,
+  BuyQuantity,
+  CoffeeCard,
+  CoffeeInfo,
+  CoffeeListContainer,
+  CoffeeListStyles,
+  OptionsStyle,
+} from './style'
+import CoffeeDataList from '../../../../Data/coffeeData'
+import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { useTheme } from 'styled-components'
 
 export function CoffeeList() {
   const theme = useTheme()
@@ -12,7 +21,7 @@ export function CoffeeList() {
       <CoffeeListContainer>
         {CoffeeDataList.map((coffee, index) => (
           <CoffeeCard key={index}>
-            <img src={`${coffee.iconSrc}`}></img>
+            <img src={`${coffee.iconSrc}`} alt={coffee.name}></img>
 
             <CoffeeInfo>
               <OptionsStyle>
@@ -32,19 +41,20 @@ export function CoffeeList() {
 
               <BuyQuantity>
                 <button title="Remover">
-                  <Minus size={14}/>
+                  <Minus size={14} />
                 </button>
                 <span title="Unidades">1</span>
                 <button title="Adicionar">
-                  <Plus size={14}/>
+                  <Plus size={14} />
                 </button>
               </BuyQuantity>
 
               <BuyButton
                 title="Comprar"
-                background={theme.product['purple-dark']}>
-                <button >
-                  <ShoppingCart size={22} weight="fill"/>
+                background={theme.product['purple-dark']}
+              >
+                <button>
+                  <ShoppingCart size={22} weight="fill" />
                 </button>
               </BuyButton>
             </BuyActions>

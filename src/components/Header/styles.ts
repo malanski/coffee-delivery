@@ -4,16 +4,21 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3.2rem 16rem;
+  flex-wrap: wrap;
   width: 100%;
+  padding: 3.2rem 0;
+  margin-bottom: 9.4rem;
+
   img {
     width: 8.5rem;
     height: 4rem;
   }
 
-  @media (max-width: 76rem) {
-    padding: 3.2rem 3rem;
-
+  @media (max-width: 1150px) {
+    img {
+      width: 8.5rem;
+      height: 4rem;
+    }
   }
 `
 
@@ -38,9 +43,8 @@ export const UserLocation = styled.div`
   &:hover {
     background: ${(props) => props.theme.product['purple-dark']};
     color: ${(props) => props.theme.product['purple-light']};
-
   }
- `
+`
 
 export const CartButton = styled.button`
   display: flex;
@@ -56,8 +60,7 @@ export const CartButton = styled.button`
   transition: all ease-in-out 600ms;
 
   &:hover {
-    background: ${(props) => props.theme.product['yellow']};
+    background: ${(props) => props.theme.product.yellow};
     color: ${(props) => props.theme.product['yellow-light']};
-
   }
- `
+`
