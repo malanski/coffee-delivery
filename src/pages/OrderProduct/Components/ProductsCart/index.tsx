@@ -1,3 +1,9 @@
+import { Subtitle } from '../../styles'
+
 export const ProductsCart = () => {
-  return <h1>Products Cart</h1>
+  return (
+    <div>
+      <Subtitle>Cafés selecionados</Subtitle>
+    </div>
+  )
 }

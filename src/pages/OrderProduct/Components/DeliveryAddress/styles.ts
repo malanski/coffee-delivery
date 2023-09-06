@@ -5,19 +5,27 @@ export const DeliveryContainer = styled.div`
   flex-direction: column;
   background: ${(props) => props.theme.base['base-card']};
   width: 560px;
+  padding: 4rem;
+  border-radius: 0.6rem;
+  gap: 3.2rem;
+
   @media (max-width: 696px) {
     width: 95vw;
+    padding: 2.4rem;
+  }
+  @media (max-width: 375px) {
+    padding: 1.2rem;
   }
 `
 export const DeliveryHeader = styled.div`
   display: flex;
-  padding: 4rem;
   border-radius: 0.6rem;
   gap: 0.8rem;
-  margin-bottom: 3.2rem;
 
   svg {
     color: ${(props) => props.theme.product['yellow-dark']};
+  }
+  @media (max-width: 696px) {
   }
 `
 export const DeliveryTitle = styled.div`
@@ -52,6 +60,7 @@ export const AddressInput = styled.input<IAddressInputProps>`
   border: 1px solid ${(props) => props.theme.base['base-button']};
   padding: 1.2rem;
   width: ${(props) => props.width};
+  height: 4.2rem;
 `
 
 export const InputSection = styled.div`

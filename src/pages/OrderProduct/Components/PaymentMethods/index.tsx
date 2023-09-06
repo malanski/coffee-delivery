@@ -1,3 +1,11 @@
+import { Subtitle } from '../../styles'
+
 export const PaymentMethods = () => {
-  return <h1>PaymentMethod</h1>
+  return (
+    <>
+      <div>
+        <Subtitle>Formas de pagamento</Subtitle>
+      </div>
+    </>
+  )
 }

@@ -26,7 +26,10 @@ export const DeliveryAddress = () => {
 
         <InputSection>
           <AddressInput placeholder="Número" width="38%"></AddressInput>
-          <AddressInput placeholder="Complemento" width="100%"></AddressInput>
+          <AddressInput
+            placeholder="Complemento (Opcional)"
+            width="100%"
+          ></AddressInput>
         </InputSection>
 
         <InputSection>
