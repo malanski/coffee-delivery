@@ -21,7 +21,7 @@ export const CoffeeListStyles = styled.section`
 export const CoffeeListContainer = styled.section`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   gap: 3.2rem;

@@ -11,30 +11,35 @@ export const CoffeeCard = styled.div`
   align-items: center;
   text-align: center;
   padding: 2.4rem;
+
   h3 {
     font-family: 'Baloo 2';
     font-size: 2rem;
     color: ${(props) => props.theme.base['base-subtitle']};
     margin: 0.8rem 0;
   }
+
   h4 {
     font-family: 'Roboto';
     font-size: 1.4rem;
     margin: 0.8rem 0;
     color: ${(props) => props.theme.base['base-label']};
   }
+
   img {
     margin-top: -4rem;
   }
-  @media (max-width: 849px) {
-    min-width: calc(45vw - 2.4rem);
-    min-height: 50vh;
-    padding: 1.2rem;
+
+  @media (max-width: 1280px) {
+    max-width: 25vw;
   }
-  @media (max-width: 593px) {
-    min-width: calc(85vw - 2.4rem);
-    margin: 0 auto;
-    padding: 1.2rem;
+
+  @media (max-width: 950px) {
+    max-width: 38vw;
+  }
+
+  @media (max-width: 630px) {
+    min-width: 85vw;
   }
 `
 export const CoffeeInfo = styled.div`
@@ -49,6 +54,7 @@ export const OptionsStyle = styled.div`
   align-items: center;
   flex-direction: row;
   width: 100%;
+
   button {
     font-size: 1rem;
     background: ${(props) => props.theme.product['yellow-light']};
@@ -71,10 +77,12 @@ export const BuyQuantity = styled.div`
   font-family: Roboto;
   font-size: 1.6rem;
   background: ${(props) => props.theme.base['base-button']};
+
   span {
     padding: 0.2rem;
     font-size: 1.6rem;
   }
+
   button {
     border: none;
     transition: all ease-in-out 600ms;
@@ -83,6 +91,7 @@ export const BuyQuantity = styled.div`
     display: flex;
     background: ${(props) => props.theme.base['base-button']};
   }
+
   button:hover {
     transition: all ease-in-out 600ms;
     background: ${(props) => props.theme.base['base-label']};
@@ -103,6 +112,7 @@ export const BuyActions = styled.div`
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
+
   h6 {
     font-family: 'Roboto';
     font-size: 1.4rem;
@@ -113,8 +123,7 @@ export const BuyActions = styled.div`
       font-weight: 800;
     }
   }
-  button {
-  }
+
   button:hover {
     transition: all ease-in-out 600ms;
     background: ${(props) => props.theme.base['base-label']};
@@ -127,6 +136,7 @@ export const BuyActions = styled.div`
 interface IconButton {
   background: string
 }
+
 export const BuyButton = styled.div<IconButton>`
   button {
     background: ${(props) => props.background};
