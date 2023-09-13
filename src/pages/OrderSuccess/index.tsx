@@ -22,6 +22,7 @@ export const OrderSuccess = () => {
             <h2>Uhu! Pedido confirmado</h2>
             <p>Agora é só aguardar que logo o café chegará até você</p>
           </SuccessHeader>
+
           <OrderSuccessInfo>
             <OrderSuccessData background={theme.product['purple-dark']}>
               <span>
@@ -32,6 +33,7 @@ export const OrderSuccess = () => {
                 Porto Alegre, RS
               </p>
             </OrderSuccessData>
+
             <OrderSuccessData background={theme.product.yellow}>
               <span>
                 <Clock size={16} weight="fill" />
@@ -41,6 +43,7 @@ export const OrderSuccess = () => {
                 <b>20 min - 30 min</b>
               </p>
             </OrderSuccessData>
+
             <OrderSuccessData background={theme.product['yellow-dark']}>
               <span>
                 <CurrencyDollar size={16} />
