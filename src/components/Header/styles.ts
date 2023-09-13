@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
   flex-wrap: wrap;
   width: 100%;
   padding: 3.2rem 0;
-  margin-bottom: 9.4rem;
+  margin-bottom: 0.4rem;
 
   img {
     width: 8.5rem;
@@ -34,6 +34,7 @@ export const UserLocation = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem;
+  gap: 0.4rem;
   font-size: 1.4rem;
   background: ${(props) => props.theme.product['purple-light']};
   color: ${(props) => props.theme.product['purple-dark']};

@@ -11,18 +11,13 @@ export const LayoutContainer = styled.div`
   background: ${(props) => props.theme.base.background};
 
   @media (max-width: 1377px) {
-    padding: 0 8rem;
-  }
-
-  @media (max-width: 1150px) {
     padding: 0 6rem;
   }
-
-  @media (max-width: 499px) {
-    padding: 0 4rem;
+  @media (max-width: 1250px) {
+    padding: 0 0.5rem;
   }
 
   @media (max-width: 399px) {
-    padding: 0 2rem;
+    padding: 0 0rem;
   }
 `

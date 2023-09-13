@@ -12,7 +12,7 @@ export const DeliveryAddress = () => {
 
   return (
     <OrderComponentsContainer>
-      <OrderComponentsHeader colorSvg={theme.product['purple-dark']}>
+      <OrderComponentsHeader colorSvg={theme.product.purple}>
         <MapPinLine size={22} />
 
         <OrderComponentsTitle>

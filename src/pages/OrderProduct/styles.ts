@@ -3,10 +3,12 @@ import { styled } from 'styled-components'
 export const OrderContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
   gap: 3.2rem;
   padding: 1rem;
-  @media (max-width: 1050px) {
-    flex-direction: column-reverse;
+  @media (max-width: 1200px) {
+    flex-direction: column;
   }
 `
 
@@ -27,17 +29,24 @@ export const OrderComponentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: ${(props) => props.theme.base['base-card']};
-  width: 640px;
+  width: 64rem;
   padding: 4rem;
-  border-radius: 0.6rem;
+  border-radius: 6px;
   gap: 3.2rem;
-
+  @media (max-width: 1200px) {
+    width: 95vw;
+    margin: auto;
+    padding: 4rem;
+  }
+  @media (max-width: 1050px) {
+    padding: 2rem;
+  }
   @media (max-width: 696px) {
     width: 95vw;
-    padding: 2.4rem;
+    padding: 1rem;
   }
   @media (max-width: 375px) {
-    padding: 1.2rem;
+    padding: 0.5rem;
   }
 `
 interface IOrderComponentsHeader {

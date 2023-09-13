@@ -27,6 +27,10 @@ export const PaymentButtons = styled.button`
   border-radius: 6px;
   cursor: pointer;
   width: 33%;
+  svg {
+    color: ${(props) => props.theme.product.purple};
+  }
+
   @media (max-width: 660px) {
     width: 50%;
     justify-content: space-between;

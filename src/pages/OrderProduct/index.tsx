@@ -12,7 +12,10 @@ export const OrderProducts = () => {
         <PaymentMethods />
       </OrderUserData>
 
-      <ProductsCart />
+      <OrderUserData>
+        <Subtitle>Cafés selecionados</Subtitle>
+        <ProductsCart />
+      </OrderUserData>
     </OrderContainer>
   )
 }

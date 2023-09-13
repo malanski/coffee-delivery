@@ -12,7 +12,7 @@ export const PaymentMethods = () => {
 
   return (
     <OrderComponentsContainer>
-      <OrderComponentsHeader colorSvg={theme.product['purple-dark']}>
+      <OrderComponentsHeader colorSvg={theme.product.purple}>
         <CurrencyDollar size={22} />
 
         <OrderComponentsTitle>
