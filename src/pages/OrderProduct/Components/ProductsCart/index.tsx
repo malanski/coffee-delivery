@@ -5,8 +5,10 @@ import {
   ProductsCartContainer,
   TotalOrder,
 } from './styles'
+import { useNavigate } from 'react-router-dom'
 
 export const ProductsCart = () => {
+  const navigate = useNavigate()
   return (
     <ProductsCartContainer>
       <CartItem />
@@ -27,7 +29,9 @@ export const ProductsCart = () => {
         <p>R$ 33,20</p>
       </TotalOrder>
 
-      <ConfirmButton>Confirmar Pedido</ConfirmButton>
+      <ConfirmButton onClick={() => navigate('/order-success')}>
+        Confirmar Pedido
+      </ConfirmButton>
     </ProductsCartContainer>
   )
 }
