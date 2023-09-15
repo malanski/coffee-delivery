@@ -80,6 +80,8 @@ export const TrashButton = styled.button`
   font-size: 1.2rem;
   gap: 0.4rem;
   border-radius: 6px;
+  cursor: pointer;
+
   /* line-height: 160%; */
 
   svg {

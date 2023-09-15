@@ -11,6 +11,7 @@ import {
   QuantityButton,
 } from './styles'
 import { ShoppingContext } from '../../context/ShoppingContext'
+import { formatPrice } from '../../utils/formatPrice'
 
 export interface IProductCardProps {
   data: {
@@ -25,7 +26,7 @@ export interface IProductCardProps {
 }
 
 export const ProductCard = (props: IProductCardProps) => {
-  const [qntyProductCard, setqntyProductCard] = useState(1)
+  const [qntyProductCard, setQntyProductCard] = useState(1)
 
   const { id, iconSrc, name, options, description, price } = props.data
   const { setProductsToCart, moreQntyProduct, lessQntyProduct } =
@@ -45,19 +46,18 @@ export const ProductCard = (props: IProductCardProps) => {
   }
 
   const lessProducts = () => {
-    const newQnty = lessQntyProduct(qntyProductCard)
+    const newQnty = lessQntyProduct(qntyProductCard, price)
 
-    setqntyProductCard(newQnty)
+    setQntyProductCard(newQnty)
   }
 
   const moreProducts = () => {
-    const newQnty = moreQntyProduct(qntyProductCard)
+    const newQnty = moreQntyProduct(qntyProductCard, price)
 
-    setqntyProductCard(newQnty)
+    setQntyProductCard(newQnty)
   }
 
-  const formatPrice = price.toFixed(2).toString().replace('.', ',')
-
+  const priceFormat = formatPrice(price)
   return (
     <CoffeeCard>
       <img src={`${iconSrc}`} alt={name}></img>
@@ -75,7 +75,7 @@ export const ProductCard = (props: IProductCardProps) => {
 
       <BuyActions>
         <p title="Preço atual">
-          R$ <span>{formatPrice}</span>
+          R$ <span>{priceFormat}</span>
         </p>
 
         <BuyQuantity>
