@@ -1,4 +1,5 @@
 import {
+  CartAmount,
   CartButton,
   HeaderContainer,
   UserActions,
@@ -8,9 +9,17 @@ import {
 import logo from '../../assets/Logo.svg'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { ShoppingContext } from '../../context/ShoppingContext'
 
 export function Header() {
+  const { productsCart } = useContext(ShoppingContext)
   const navigate = useNavigate()
+
+  const cartCount = productsCart.length
+
+  console.log(cartCount)
+
   return (
     <HeaderContainer>
       <img
@@ -32,6 +41,8 @@ export function Header() {
             weight="fill"
             onClick={() => navigate('/order-products')}
           />
+
+          {cartCount > 0 && <CartAmount>{cartCount}</CartAmount>}
         </CartButton>
       </UserActions>
     </HeaderContainer>

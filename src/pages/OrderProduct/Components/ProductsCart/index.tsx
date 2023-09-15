@@ -1,32 +1,46 @@
-import { CartItem } from './Component/CartItem'
-import {
-  ConfirmButton,
-  OrderDetails,
-  ProductsCartContainer,
-  TotalOrder,
-} from './styles'
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+
+import {
+  ProductsCartContainer,
+  OrderDetail,
+  TotalOrder,
+  ConfirmButton,
+} from './styles'
+import { ShoppingContext } from '../../../../context/ShoppingContext'
+import { CartItem } from './Component/CartItem'
 
 export const ProductsCart = () => {
+  const { productsCart } = useContext(ShoppingContext)
   const navigate = useNavigate()
+
   return (
     <ProductsCartContainer>
-      <CartItem />
-      <CartItem />
+      {productsCart.map((product) => (
+        <CartItem
+          key={product.id}
+          id={product.id}
+          name={product.name}
+          price={product.price}
+          options={product.options}
+          iconSrc={product.iconSrc}
+          qnty={product.qnty}
+        />
+      ))}
 
-      <OrderDetails>
+      <OrderDetail>
         <p>Total de itens</p>
-        <p>R$ 29,70</p>
-      </OrderDetails>
+        <span>R$ 29,70</span>
+      </OrderDetail>
 
-      <OrderDetails>
+      <OrderDetail>
         <p>Entrega</p>
-        <p>R$ 3.50</p>
-      </OrderDetails>
+        <span>R$ 3,70</span>
+      </OrderDetail>
 
       <TotalOrder>
-        <h4>Total</h4>
-        <p>R$ 33,20</p>
+        <h4>TotalEntrega</h4>
+        <p>R$ 33,40</p>
       </TotalOrder>
 
       <ConfirmButton onClick={() => navigate('/order-success')}>

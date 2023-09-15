@@ -12,7 +12,7 @@ export const DeliveryAddress = () => {
 
   return (
     <OrderComponentsContainer>
-      <OrderComponentsHeader colorSvg={theme.product.purple}>
+      <OrderComponentsHeader $colorsvg={theme.product.purple}>
         <MapPinLine size={22} />
 
         <OrderComponentsTitle>
@@ -22,22 +22,35 @@ export const DeliveryAddress = () => {
       </OrderComponentsHeader>
 
       <AddressInputContainer>
-        <AddressInput placeholder="CEP" width="38%"></AddressInput>
-        <AddressInput placeholder="Rua"></AddressInput>
+        <AddressInput name="CEP" placeholder="CEP" width="38%"></AddressInput>
+        <AddressInput name="Rua" placeholder="Rua"></AddressInput>
 
         <InputSection>
-          <AddressInput placeholder="Número" width="38%"></AddressInput>
           <AddressInput
+            name="Numero"
+            placeholder="Número"
+            width="38%"
+          ></AddressInput>
+          <AddressInput
+            name="Complemento"
             placeholder="Complemento (Opcional)"
             width="100%"
           ></AddressInput>
         </InputSection>
 
         <InputSection>
-          <AddressInput placeholder="Bairro" width="38%"></AddressInput>
+          <AddressInput
+            name="Bairro"
+            placeholder="Bairro"
+            width="38%"
+          ></AddressInput>
           <div>
-            <AddressInput placeholder="Cidade" width="75%"></AddressInput>
-            <AddressInput placeholder="UF" width="25%"></AddressInput>
+            <AddressInput
+              name="Cidade"
+              placeholder="Cidade"
+              width="75%"
+            ></AddressInput>
+            <AddressInput name="UF" placeholder="UF" width="25%"></AddressInput>
           </div>
         </InputSection>
       </AddressInputContainer>

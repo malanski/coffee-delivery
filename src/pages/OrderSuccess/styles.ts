@@ -5,7 +5,7 @@ export const SuccessPage = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   width: 100%;
-
+  gap: 3.2;
   @media (max-width: 950px) {
     flex-direction: column-reverse;
     align-items: center;
@@ -70,7 +70,7 @@ export const OrderSuccessInfo = styled.div`
 `
 
 interface IOrderSuccessData {
-  background: string
+  $background: string
 }
 export const OrderSuccessData = styled.div<IOrderSuccessData>`
   display: flex;
@@ -87,7 +87,7 @@ export const OrderSuccessData = styled.div<IOrderSuccessData>`
     height: 32px;
     padding: 0.8rem;
     color: ${(props) => props.theme.product['purple-light']};
-    background: ${(props) => props.background};
+    background: ${(props) => props.$background};
   }
   p {
     line-height: 130%;
@@ -104,7 +104,7 @@ export const OrderSuccessData = styled.div<IOrderSuccessData>`
   }
 `
 export const SuccessIllustration = styled.img`
-  max-width: 43.6rem;
+  max-width: 49.2rem;
   @media (max-width: 450px) {
     width: 29rem;
   }

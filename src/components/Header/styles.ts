@@ -59,9 +59,27 @@ export const CartButton = styled.button`
   color: ${(props) => props.theme.product['yellow-dark']};
   border-radius: 0.6rem;
   transition: all ease-in-out 600ms;
+  position: relative;
 
   &:hover {
     background: ${(props) => props.theme.product.yellow};
     color: ${(props) => props.theme.product['yellow-light']};
   }
+`
+export const CartAmount = styled.span`
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -0.72px;
+  color: ${(props) => props.theme.base.white};
+  background: ${(props) => props.theme.product['yellow-dark']};
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: -8.345px;
+  top: -8px;
+  border-radius: 50%;
 `

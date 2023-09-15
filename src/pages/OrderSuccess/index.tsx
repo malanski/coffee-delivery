@@ -24,7 +24,7 @@ export const OrderSuccess = () => {
           </SuccessHeader>
 
           <OrderSuccessInfo>
-            <OrderSuccessData background={theme.product['purple-dark']}>
+            <OrderSuccessData $background={theme.product['purple-dark']}>
               <span>
                 <MapPin size={16} weight="fill" />
               </span>
@@ -34,7 +34,7 @@ export const OrderSuccess = () => {
               </p>
             </OrderSuccessData>
 
-            <OrderSuccessData background={theme.product.yellow}>
+            <OrderSuccessData $background={theme.product.yellow}>
               <span>
                 <Clock size={16} weight="fill" />
               </span>
@@ -44,7 +44,7 @@ export const OrderSuccess = () => {
               </p>
             </OrderSuccessData>
 
-            <OrderSuccessData background={theme.product['yellow-dark']}>
+            <OrderSuccessData $background={theme.product['yellow-dark']}>
               <span>
                 <CurrencyDollar size={16} />
               </span>

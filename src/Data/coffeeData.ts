@@ -29,115 +29,160 @@ import arabeImg from '../assets/products_img/arabe.png'
 import irlandesImg from '../assets/products_img/irlandes.png'
 
 export interface ICoffeeData {
+  id: number
   name: string
   description: string
   options: string[]
   iconSrc: string
   imgSrc: string
+  price: number
+  qnty: number
 }
 
 const coffeeDataList: ICoffeeData[] = [
   {
+    id: 1,
     name: 'Expresso Tradicional',
     description: 'O tradicional café feito com água quente e grãos moídos',
     options: ['Tradicional'],
     iconSrc: expresso,
     imgSrc: expressoImg,
+    price: 6.99,
+    qnty: 1,
   },
   {
+    id: 2,
     name: 'Expresso Americano',
     description: 'Expresso diluído, menos intenso que o tradicional',
     options: ['Tradicional'],
     iconSrc: americano,
     imgSrc: americanoImg,
+    price: 8.99,
+    qnty: 1,
   },
   {
+    id: 3,
     name: 'Expresso Cremoso',
     description: 'Meio a meio de expresso tradicional com leite vaporizado',
     options: ['Tradicional'],
     iconSrc: cremoso,
     imgSrc: cremosoImg,
+    price: 11.99,
+    qnty: 1,
   },
   {
+    id: 4,
     name: 'Expresso Gelado',
     description: 'Bebida preparada com café expresso e cubos de gelo',
     options: ['Tradicional', 'Gelado'],
     iconSrc: gelado,
     imgSrc: geladoImg,
+    price: 13.99,
+    qnty: 1,
   },
   {
+    id: 5,
     name: 'Café com Leite',
     description: 'Meio a meio de expresso tradicional com leite vaporizado',
     options: ['Tradicional', 'Com Leite'],
     iconSrc: comLeite,
     imgSrc: comLeiteImg,
+    price: 7.99,
+    qnty: 1,
   },
   {
+    id: 6,
     name: 'Latte',
     description:
       'Uma dose de café expresso com o dobro de leite e espuma cremosa',
     options: ['Tradicional', 'Com Leite'],
     iconSrc: latte,
     imgSrc: latteImg,
+    price: 12.99,
+    qnty: 1,
   },
   {
+    id: 7,
     name: 'Capuccino',
     description:
       'Bebida com canela feita de doses iguais de café, leite e espuma',
     options: ['Tradicional', 'Com Leite'],
     iconSrc: capuccino,
     imgSrc: capuccinoImg,
+    price: 12.99,
+    qnty: 1,
   },
   {
+    id: 8,
     name: 'Macchiato',
     description:
       'Café expresso misturado com um pouco de leite quente e espuma',
     options: ['Tradicional', 'Com Leite'],
     iconSrc: macchiato,
     imgSrc: macchiatoImg,
+    price: 10.99,
+    qnty: 1,
   },
   {
+    id: 9,
     name: 'Mocaccino',
     description: 'Café expresso com calda de chocolate, pouco leite e espuma',
     options: ['Tradicional', 'Com Leite'],
     iconSrc: mocaccino,
     imgSrc: mocaccinoImg,
+    price: 15.99,
+    qnty: 1,
   },
   {
+    id: 10,
     name: 'Chocolate quente',
     description: 'Bebida feita com chocolate dissolvido no leite quente e café',
     options: ['Especial', 'Com Leite'],
     iconSrc: chocolate,
     imgSrc: chocolateImg,
+    price: 12.99,
+    qnty: 1,
   },
   {
+    id: 11,
     name: 'Cubano',
     description:
       'Drink gelado de café expresso com rum, creme de leite e hortelã',
     options: ['Especial', 'Alcoólico', 'Gelado'],
     iconSrc: cubano,
     imgSrc: cubanoImg,
+    price: 13.99,
+    qnty: 1,
   },
   {
+    id: 12,
     name: 'Havaiano',
     description: 'Bebida adocicada preparada com café e leite de coco',
     options: ['Especial'],
     iconSrc: havaiano,
     imgSrc: havaianoImg,
+    price: 15.99,
+    qnty: 1,
   },
   {
+    id: 13,
     name: 'Árabe',
     description: 'Bebida preparada com grãos de café árabe e especiarias',
     options: ['Especial'],
     iconSrc: arabe,
     imgSrc: arabeImg,
+    price: 19.99,
+    qnty: 1,
   },
   {
+    id: 14,
     name: 'Irlandês',
     description: 'Bebida a base de café, uísque irlandês, açúcar e chantili',
     options: ['Especial', 'Alcoólico'],
     iconSrc: irlandes,
     imgSrc: irlandesImg,
+    price: 19.99,
+    qnty: 1,
   },
 ]
 

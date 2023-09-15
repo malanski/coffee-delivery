@@ -1,5 +1,5 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { useTheme } from 'styled-components'
+import { useContext, useState } from 'react'
 
 import {
   CoffeeCard,
@@ -8,30 +8,64 @@ import {
   BuyActions,
   BuyQuantity,
   BuyButton,
+  QuantityButton,
 } from './styles'
+import { ShoppingContext } from '../../context/ShoppingContext'
 
-export interface IProductData {
+export interface IProductCardProps {
   data: {
+    id: number
     name: string
     description: string
     options: string[]
     iconSrc: string
-    imgSr?: string
+    imgSrc?: string
+    price: number
   }
 }
 
-export function ProductCard(props: IProductData) {
-  const theme = useTheme()
+export const ProductCard = (props: IProductCardProps) => {
+  const [qntyProductCard, setqntyProductCard] = useState(1)
 
-  const { name, description, options, iconSrc } = props.data
+  const { id, iconSrc, name, options, description, price } = props.data
+  const { setProductsToCart, moreQntyProduct, lessQntyProduct } =
+    useContext(ShoppingContext)
+
+  const products = {
+    id,
+    iconSrc,
+    name,
+    options,
+    price,
+    qnty: qntyProductCard,
+  }
+
+  const getDataProduct = () => {
+    setProductsToCart(products)
+  }
+
+  const lessProducts = () => {
+    const newQnty = lessQntyProduct(qntyProductCard)
+
+    setqntyProductCard(newQnty)
+  }
+
+  const moreProducts = () => {
+    const newQnty = moreQntyProduct(qntyProductCard)
+
+    setqntyProductCard(newQnty)
+  }
+
+  const formatPrice = price.toFixed(2).toString().replace('.', ',')
+
   return (
     <CoffeeCard>
       <img src={`${iconSrc}`} alt={name}></img>
 
       <CoffeeInfo>
         <OptionsStyle>
-          {options.map((option, index) => (
-            <button key={index}>{option}</button>
+          {options.map((option) => (
+            <button key={option}>{option}</button>
           ))}
         </OptionsStyle>
 
@@ -40,24 +74,22 @@ export function ProductCard(props: IProductData) {
       </CoffeeInfo>
 
       <BuyActions>
-        <h6 title="Preço atual">
-          R$ <span>9,90</span>
-        </h6>
+        <p title="Preço atual">
+          R$ <span>{formatPrice}</span>
+        </p>
 
         <BuyQuantity>
-          <button title="Remover">
+          <QuantityButton title="Remover" onClick={lessProducts}>
             <Minus size={14} />
-          </button>
-          <span title="Unidades">1</span>
-          <button title="Adicionar">
+          </QuantityButton>
+          <span title="Unidades">{qntyProductCard}</span>
+          <QuantityButton title="Adicionar" onClick={moreProducts}>
             <Plus size={14} />
-          </button>
+          </QuantityButton>
         </BuyQuantity>
 
-        <BuyButton title="Comprar" background={theme.product['purple-dark']}>
-          <button>
-            <ShoppingCart size={22} weight="fill" />
-          </button>
+        <BuyButton title="Comprar" onClick={getDataProduct}>
+          <ShoppingCart size={22} weight="fill" />
         </BuyButton>
       </BuyActions>
     </CoffeeCard>

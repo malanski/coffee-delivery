@@ -50,15 +50,16 @@ export const OrderComponentsContainer = styled.div`
   }
 `
 interface IOrderComponentsHeader {
-  colorSvg: string
+  $colorsvg: string
 }
+
 export const OrderComponentsHeader = styled.div<IOrderComponentsHeader>`
   display: flex;
   border-radius: 0.6rem;
   gap: 0.8rem;
 
   svg {
-    color: ${(props) => props.colorSvg};
+    color: ${(props) => props.$colorsvg};
   }
   @media (max-width: 696px) {
   }

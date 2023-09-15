@@ -12,7 +12,7 @@ export const ProductsCartContainer = styled.div`
   @media (max-width: 1050px) {
   }
 `
-export const OrderDetails = styled.div`
+export const OrderDetail = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
