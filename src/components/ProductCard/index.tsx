@@ -1,5 +1,5 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {
   CoffeeCard,
   CoffeeInfo,
@@ -9,7 +9,6 @@ import {
   BuyButton,
   QuantityButton,
 } from './styles'
-// import { ShoppingContext } from '../../context/ShoppingContext2'
 import { formatPrice } from '../../utils/formatPrice'
 import { ShoppingContext } from '../../context/ShoppingContext2'
 
@@ -29,35 +28,48 @@ export const ProductCard = (props: IProductCardProps) => {
   const [qntyProductCard, setQntyProductCard] = useState(1)
 
   const { id, iconSrc, name, options, description, price } = props.data
-  const { addToCart, updateQuantity } = useContext(ShoppingContext)
+  const shoppingContext = useContext(ShoppingContext)
+
+  // Verifique se shoppingContext não é nulo antes de acessar suas propriedades
+  const addToCart = shoppingContext?.addToCart
+  const updateQuantity = shoppingContext?.updateQuantity
 
   const products = {
     id,
     iconSrc,
     name,
     options,
+    description,
     price,
     qnty: qntyProductCard,
   }
 
   const getDataProduct = () => {
-    addToCart(products)
+    addToCart?.(products) // Use o operador de chamada opcional para evitar erros se addToCart for nulo
   }
 
   const lessProducts = () => {
     if (qntyProductCard > 1) {
       const newQnty = qntyProductCard - 1
       setQntyProductCard(newQnty)
-      updateQuantity(id, newQnty) // Atualize a quantidade no carrinho
+      updateQuantity?.(id, newQnty) // Use o operador de chamada opcional para evitar erros
     }
   }
 
   const moreProducts = () => {
     const newQnty = qntyProductCard + 1
     setQntyProductCard(newQnty)
-    updateQuantity(id, newQnty) // Atualize a quantidade no carrinho
+    updateQuantity?.(id, newQnty) // Use o operador de chamada opcional para evitar erros
   }
 
+  useEffect(() => {
+    if (shoppingContext) {
+      const productInCart = shoppingContext.cart.find((item) => item.id === id)
+      if (productInCart) {
+        setQntyProductCard(productInCart.quantity)
+      }
+    }
+  }, [shoppingContext, id])
   const priceFormat = formatPrice(price)
 
   return (

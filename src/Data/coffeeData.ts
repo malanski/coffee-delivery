@@ -34,7 +34,7 @@ export interface ICoffeeData {
   description: string
   options: string[]
   iconSrc: string
-  imgSrc: string
+  imgSrc?: string
   price: number
   qnty: number
 }

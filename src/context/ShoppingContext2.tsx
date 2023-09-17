@@ -32,7 +32,7 @@ export const ShoppingProvider: React.FC<{ children: React.ReactNode }> = ({
     if (existingItem) {
       updateQuantity(existingItem.id, existingItem.quantity + 1)
     } else {
-      setCart([...cart, { ...item, quantity: 1 }])
+      setCart([...cart, { ...item, quantity: item.qnty }])
     }
   }
 

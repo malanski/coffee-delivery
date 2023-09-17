@@ -9,16 +9,16 @@ import {
 import logo from '../../assets/Logo.svg'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { ShoppingContext } from '../../context/ShoppingContext2'
 
 export function Header() {
-  const { cart } = useContext(ShoppingContext)
+  const { cart = [] } = useContext(ShoppingContext) || {} // Desestruture o objeto do contexto
   const navigate = useNavigate()
 
-  const cartCount = cart.length
-
-  console.log(cartCount)
+  useEffect(() => {
+    console.log(cart.length) // Use cart.length para obter o número de itens no carrinho
+  }, [cart]) // Execute o efeito sempre que o carrinho for atualizado
 
   return (
     <HeaderContainer>
@@ -35,14 +35,10 @@ export function Header() {
           <span> Porto Alegre</span>
         </UserLocation>
 
-        <CartButton>
-          <ShoppingCart
-            size={22}
-            weight="fill"
-            onClick={() => navigate('/order-products')}
-          />
+        <CartButton onClick={() => navigate('/order-products')}>
+          <ShoppingCart size={22} weight="fill" />
 
-          {cartCount > 0 && <CartAmount>{cartCount}</CartAmount>}
+          {cart.length > 0 && <CartAmount>{cart.length}</CartAmount>}
         </CartButton>
       </UserActions>
     </HeaderContainer>
