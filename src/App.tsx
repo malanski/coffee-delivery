@@ -7,15 +7,15 @@ import { ShoppingContextProvider } from './context/ShoppingContext'
 
 export const App = () => {
   return (
-    <ShoppingContextProvider>
-      <ThemeProvider theme={defaultTheme}>
-        <BrowserRouter>
+    <ThemeProvider theme={defaultTheme}>
+      <BrowserRouter>
+        <ShoppingContextProvider>
           <Router />
-        </BrowserRouter>
+        </ShoppingContextProvider>
+      </BrowserRouter>
 
-        <GlobalStyled />
-      </ThemeProvider>
-    </ShoppingContextProvider>
+      <GlobalStyled />
+    </ThemeProvider>
   )
 }
 

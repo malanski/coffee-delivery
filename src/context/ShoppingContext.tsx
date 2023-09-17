@@ -6,7 +6,6 @@ interface IShoppingContextType {
   totalItems: number
   setProductsToCart: (product: IProductsDataCart) => void
   removeProductCart: (id: number) => void
-  calculateTotalItems: () => void
   moreQntyProduct: (qntyProduct: number, price: number) => number
   lessQntyProduct: (qntyProduct: number, price: number) => number
 }
@@ -30,11 +29,10 @@ export const ShoppingContextProvider = ({
 
     if (productIndex !== -1) {
       productsCart[productIndex].qnty += product.qnty
-
-      return
+    } else {
+      setProductsCart((prevState) => [...prevState, product])
     }
-
-    setProductsCart((prevState) => [...prevState, product])
+    calculateTotalItems()
   }
 
   const removeProductCart = (id: number) => {
@@ -43,22 +41,51 @@ export const ShoppingContextProvider = ({
     )
 
     setProductsCart(productsCartWithoutProductToDelete)
+    calculateTotalItems()
   }
+
+  // const calculateTotalItems = () => {
+  //   const totalValue = productsCart.reduce((accumulator, product) => {
+  //     const productTotal = product.price * product.qnty
+
+  //     console.log(`${product.name} Product Total: ${productTotal}`)
+  //     console.log(`${product.name} Accumulator is: ${accumulator}`)
+
+  //     return accumulator + productTotal
+  //   }, 0)
+  //   setTotalItems(totalValue)
+  //   console.log(`Total Value: ${totalValue}`)
+
+  //   calculateTotalItemsCount()
+  // }
 
   const calculateTotalItems = () => {
-    const totalValue = productsCart.reduce(
-      (accumulator, product) => accumulator + product.price * product.qnty,
-      0,
-    )
+    const totalValue = productsCart.reduce((accumulator, product) => {
+      const productTotal = accumulator + product.price * product.qnty
+
+      console.log(`${product.name} Product Total: ${productTotal}`)
+      console.log(`${product.name} Accumulator is: ${accumulator}`)
+      return productTotal
+    }, 0)
 
     setTotalItems(totalValue)
+    console.log(`Total Value: ${totalValue}`)
   }
+
+  // const calculateTotalItemsCount = () => {
+  //   return productsCart.reduce(
+  //     (accumulator, product) => accumulator + product.qnty,
+  //     0,
+  //   )
+  // }
 
   const moreQntyProduct = (qntyProduct: number, price: number) => {
     const newQnty = qntyProduct + 1
 
+    // Update total items when increasing quantity
     setTotalItems(totalItems + price)
     // calculateTotalItems()
+    console.log(`Total price: ${price}`)
 
     return newQnty
   }
@@ -68,8 +95,10 @@ export const ShoppingContextProvider = ({
 
     const newQnty = qntyProduct - 1
 
+    // Update total items when decreasing quantity
     setTotalItems(totalItems - price)
     // calculateTotalItems()
+    console.log(`Total price: ${price}`)
 
     return newQnty
   }
@@ -81,7 +110,6 @@ export const ShoppingContextProvider = ({
         totalItems,
         setProductsToCart,
         removeProductCart,
-        calculateTotalItems,
         moreQntyProduct,
         lessQntyProduct,
       }}

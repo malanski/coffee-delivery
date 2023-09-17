@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const CoffeeListStyles = styled.section`
+  width: 100%;
   h2 {
     font-family: 'Baloo 2';
     max-width: 25.6rem;
@@ -20,19 +21,18 @@ export const CoffeeListStyles = styled.section`
 `
 export const CoffeeListContainer = styled.section`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  /* flex-direction: row; */
+  /* justify-content: space-around; */
   align-items: center;
   flex-wrap: wrap;
-  gap: 3.2rem;
-  /* margin: 0 32rem; */
-  /* max-width: 112rem; */
-  @media (max-width: 740px) {
-    /* margin: 0 4rem; */
-    /* justify-content: space-around; */
-  }
-  @media (max-width: 480px) {
-    /* margin: 0 2rem; */
-    /* flex-wrap: wrap; */
+  /* gap: 3.2rem; */
+
+  width: 100%;
+
+  @media (max-width: 1280px) {
+    /* justify-content: ; */
+    /* gap: 0; */
+    /* margin: auto; */
+    /* width: 90%; */
   }
 `

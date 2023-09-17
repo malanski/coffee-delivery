@@ -7,7 +7,8 @@ export const IntroContainer = styled.div`
   gap: 4rem;
 
   img {
-    max-width: 35vw;
+    /* max-width: 30vw; */
+    max-width: 47.6rem;
     height: auto;
   }
 

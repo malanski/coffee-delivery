@@ -8,6 +8,7 @@ export const AddressInputContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 1.6rem;
+  width: 100%;
 `
 export const AddressInput = styled.input<IAddressInputProps>`
   background: ${(props) => props.theme.base['base-input']};
@@ -18,6 +19,13 @@ export const AddressInput = styled.input<IAddressInputProps>`
   padding: 1.2rem;
   width: ${(props) => props.width};
   height: 4.2rem;
+
+  @media (max-width: 999px) {
+    width: 50%;
+  }
+  @media (max-width: 712px) {
+    width: 100%;
+  }
 `
 
 export const InputSection = styled.div`

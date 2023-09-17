@@ -12,11 +12,8 @@ import { formatPrice } from '../../../../utils/formatPrice'
 import { CartItem } from './Component/CartItem'
 
 export const ProductsCart = () => {
-  const { productsCart, totalItems, calculateTotalItems } =
-    useContext(ShoppingContext)
+  const { productsCart, totalItems } = useContext(ShoppingContext)
   const navigate = useNavigate()
-
-  calculateTotalItems()
 
   const formatTotalItems = formatPrice(totalItems)
 
@@ -45,8 +42,8 @@ export const ProductsCart = () => {
       </OrderDetail>
 
       <TotalOrder>
-        <h4>TotalEntrega</h4>
-        <p>R$ 33,40</p>
+        <h4>Total</h4>
+        <p>R$ {formatTotalItems}</p>
       </TotalOrder>
 
       <ConfirmButton onClick={() => navigate('/order-success')}>

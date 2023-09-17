@@ -34,16 +34,15 @@ export const OrderComponentsContainer = styled.div`
   border-radius: 6px;
   gap: 3.2rem;
   @media (max-width: 1200px) {
-    width: 95vw;
+    width: 100%;
     margin: auto;
-    padding: 4rem;
-  }
-  @media (max-width: 1050px) {
     padding: 2rem;
   }
-  @media (max-width: 696px) {
-    width: 95vw;
+  @media (max-width: 1050px) {
     padding: 1rem;
+  }
+  @media (max-width: 696px) {
+    padding: 0.8rem;
   }
   @media (max-width: 375px) {
     padding: 0.5rem;

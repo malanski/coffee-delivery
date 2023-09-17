@@ -13,8 +13,13 @@ export const LayoutContainer = styled.div`
   @media (max-width: 1377px) {
     padding: 0 6rem;
   }
+
   @media (max-width: 1250px) {
-    padding: 0 0.5rem;
+    padding: 0 2rem;
+  }
+
+  @media (max-width: 900px) {
+    padding: 0 1rem;
   }
 
   @media (max-width: 399px) {
