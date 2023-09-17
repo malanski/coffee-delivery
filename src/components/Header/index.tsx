@@ -10,13 +10,13 @@ import logo from '../../assets/Logo.svg'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
-import { ShoppingContext } from '../../context/ShoppingContext'
+import { ShoppingContext } from '../../context/ShoppingContext2'
 
 export function Header() {
-  const { productsCart } = useContext(ShoppingContext)
+  const { cart } = useContext(ShoppingContext)
   const navigate = useNavigate()
 
-  const cartCount = productsCart.length
+  const cartCount = cart.length
 
   console.log(cartCount)
 

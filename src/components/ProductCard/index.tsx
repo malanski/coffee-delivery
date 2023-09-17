@@ -1,6 +1,5 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { useContext, useState } from 'react'
-
 import {
   CoffeeCard,
   CoffeeInfo,
@@ -10,8 +9,9 @@ import {
   BuyButton,
   QuantityButton,
 } from './styles'
-import { ShoppingContext } from '../../context/ShoppingContext'
+// import { ShoppingContext } from '../../context/ShoppingContext2'
 import { formatPrice } from '../../utils/formatPrice'
+import { ShoppingContext } from '../../context/ShoppingContext2'
 
 export interface IProductCardProps {
   data: {
@@ -29,8 +29,7 @@ export const ProductCard = (props: IProductCardProps) => {
   const [qntyProductCard, setQntyProductCard] = useState(1)
 
   const { id, iconSrc, name, options, description, price } = props.data
-  const { setProductsToCart, moreQntyProduct, lessQntyProduct } =
-    useContext(ShoppingContext)
+  const { addToCart, updateQuantity } = useContext(ShoppingContext)
 
   const products = {
     id,
@@ -42,22 +41,25 @@ export const ProductCard = (props: IProductCardProps) => {
   }
 
   const getDataProduct = () => {
-    setProductsToCart(products)
+    addToCart(products)
   }
 
   const lessProducts = () => {
-    const newQnty = lessQntyProduct(qntyProductCard, price)
-
-    setQntyProductCard(newQnty)
+    if (qntyProductCard > 1) {
+      const newQnty = qntyProductCard - 1
+      setQntyProductCard(newQnty)
+      updateQuantity(id, newQnty) // Atualize a quantidade no carrinho
+    }
   }
 
   const moreProducts = () => {
-    const newQnty = moreQntyProduct(qntyProductCard, price)
-
+    const newQnty = qntyProductCard + 1
     setQntyProductCard(newQnty)
+    updateQuantity(id, newQnty) // Atualize a quantidade no carrinho
   }
 
   const priceFormat = formatPrice(price)
+
   return (
     <CoffeeCard>
       <img src={`${iconSrc}`} alt={name}></img>

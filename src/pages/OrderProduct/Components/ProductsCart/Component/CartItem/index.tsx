@@ -1,6 +1,6 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
 
-import { IProductsDataCart } from '../../../../../../@types/interfaces'
+// import { IProductsDataCart } from '../../../../../../@types/interfaces'
 
 import {
   CartItemContainer,
@@ -12,37 +12,44 @@ import {
   Price,
   Divider,
 } from './styles'
-import { formatPrice } from '../../../../../../utils/formatPrice'
-import { useContext, useState } from 'react'
-import { ShoppingContext } from '../../../../../../context/ShoppingContext'
+import React, { useContext } from 'react'
+import { ShoppingContext } from '../../../../../../context/ShoppingContext2' // Importe o contexto
 
-export const CartItem = (props: IProductsDataCart) => {
-  const { id, name, iconSrc, price, qnty } = props
-  const { moreQntyProduct, lessQntyProduct, removeProductCart } =
-    useContext(ShoppingContext)
+interface CartItemProps {
+  id: number
+  name: string
+  price: number
+  options: string[]
+  iconSrc: string
+  qnty: number
+}
 
-  const [qntyProductCart, setQntyProductCart] = useState(qnty)
+export const CartItem: React.FC<CartItemProps> = ({
+  id,
+  name,
+  price,
+  iconSrc,
+  qnty,
+}) => {
+  const { updateQuantity, removeFromCart } = useContext(ShoppingContext) || {}
 
   const moreProducts = () => {
-    const newQnty = moreQntyProduct(qntyProductCart, price)
-
-    setQntyProductCart(newQnty)
+    if (updateQuantity) {
+      updateQuantity(id, qnty + 1)
+    }
   }
 
   const lessProducts = () => {
-    const newQnty = lessQntyProduct(qntyProductCart, price)
-
-    setQntyProductCart(newQnty)
+    if (updateQuantity && qnty > 1) {
+      updateQuantity(id, qnty - 1)
+    }
   }
 
   const removeProduct = () => {
-    removeProductCart(id)
+    if (removeFromCart) {
+      removeFromCart(id)
+    }
   }
-
-  const multiplyPrice = price * qntyProductCart
-
-  const priceFormat = formatPrice(multiplyPrice)
-
   return (
     <>
       <CartItemContainer>
@@ -56,7 +63,7 @@ export const CartItem = (props: IProductsDataCart) => {
                   <Minus size={14} />
                 </QuantityButton>
 
-                <span>{qntyProductCart}</span>
+                <span>{qnty}</span>
 
                 <QuantityButton onClick={moreProducts}>
                   <Plus size={14} />
@@ -71,7 +78,7 @@ export const CartItem = (props: IProductsDataCart) => {
           </div>
         </ItemContainer>
 
-        <Price>R$ {priceFormat}</Price>
+        <Price>R$ {price * qnty}</Price>
       </CartItemContainer>
       <Divider></Divider>
     </>
