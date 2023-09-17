@@ -1,6 +1,5 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { useTheme } from 'styled-components'
-
+import { useContext, useEffect, useState } from 'react'
 import {
   CoffeeCard,
   CoffeeInfo,
@@ -8,30 +7,79 @@ import {
   BuyActions,
   BuyQuantity,
   BuyButton,
+  QuantityButton,
 } from './styles'
+import { formatPrice } from '../../utils/formatPrice'
+import { ShoppingContext } from '../../context/ShoppingContext2'
 
-export interface IProductData {
+export interface IProductCardProps {
   data: {
+    id: number
     name: string
     description: string
     options: string[]
     iconSrc: string
-    imgSr?: string
+    imgSrc?: string
+    price: number
   }
 }
 
-export function ProductCard(props: IProductData) {
-  const theme = useTheme()
+export const ProductCard = (props: IProductCardProps) => {
+  const [qntyProductCard, setQntyProductCard] = useState(1)
 
-  const { name, description, options, iconSrc } = props.data
+  const { id, iconSrc, name, options, description, price } = props.data
+  const shoppingContext = useContext(ShoppingContext)
+
+  // Verifique se shoppingContext não é nulo antes de acessar suas propriedades
+  const addToCart = shoppingContext?.addToCart
+  const updateQuantity = shoppingContext?.updateQuantity
+
+  const products = {
+    id,
+    iconSrc,
+    name,
+    options,
+    description,
+    price,
+    qnty: qntyProductCard,
+  }
+
+  const getDataProduct = () => {
+    addToCart?.(products) // Use o operador de chamada opcional para evitar erros se addToCart for nulo
+  }
+
+  const lessProducts = () => {
+    if (qntyProductCard > 1) {
+      const newQnty = qntyProductCard - 1
+      setQntyProductCard(newQnty)
+      updateQuantity?.(id, newQnty) // Use o operador de chamada opcional para evitar erros
+    }
+  }
+
+  const moreProducts = () => {
+    const newQnty = qntyProductCard + 1
+    setQntyProductCard(newQnty)
+    updateQuantity?.(id, newQnty) // Use o operador de chamada opcional para evitar erros
+  }
+
+  useEffect(() => {
+    if (shoppingContext) {
+      const productInCart = shoppingContext.cart.find((item) => item.id === id)
+      if (productInCart) {
+        setQntyProductCard(productInCart.quantity)
+      }
+    }
+  }, [shoppingContext, id])
+  const priceFormat = formatPrice(price)
+
   return (
     <CoffeeCard>
       <img src={`${iconSrc}`} alt={name}></img>
 
       <CoffeeInfo>
         <OptionsStyle>
-          {options.map((option, index) => (
-            <button key={index}>{option}</button>
+          {options.map((option) => (
+            <button key={option}>{option}</button>
           ))}
         </OptionsStyle>
 
@@ -40,24 +88,22 @@ export function ProductCard(props: IProductData) {
       </CoffeeInfo>
 
       <BuyActions>
-        <h6 title="Preço atual">
-          R$ <span>9,90</span>
-        </h6>
+        <p title="Preço atual">
+          R$ <span>{priceFormat}</span>
+        </p>
 
         <BuyQuantity>
-          <button title="Remover">
+          <QuantityButton title="Remover" onClick={lessProducts}>
             <Minus size={14} />
-          </button>
-          <span title="Unidades">1</span>
-          <button title="Adicionar">
+          </QuantityButton>
+          <span title="Unidades">{qntyProductCard}</span>
+          <QuantityButton title="Adicionar" onClick={moreProducts}>
             <Plus size={14} />
-          </button>
+          </QuantityButton>
         </BuyQuantity>
 
-        <BuyButton title="Comprar" background={theme.product['purple-dark']}>
-          <button>
-            <ShoppingCart size={22} weight="fill" />
-          </button>
+        <BuyButton title="Comprar" onClick={getDataProduct}>
+          <ShoppingCart size={22} weight="fill" />
         </BuyButton>
       </BuyActions>
     </CoffeeCard>

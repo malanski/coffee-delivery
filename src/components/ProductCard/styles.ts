@@ -11,30 +11,39 @@ export const CoffeeCard = styled.div`
   align-items: center;
   text-align: center;
   padding: 2.4rem;
+  /* align-self: baseline; */
+  margin: 1.6rem auto;
+
   h3 {
     font-family: 'Baloo 2';
     font-size: 2rem;
     color: ${(props) => props.theme.base['base-subtitle']};
     margin: 0.8rem 0;
   }
+
   h4 {
     font-family: 'Roboto';
     font-size: 1.4rem;
     margin: 0.8rem 0;
     color: ${(props) => props.theme.base['base-label']};
   }
+
   img {
     margin-top: -4rem;
   }
-  @media (max-width: 849px) {
-    min-width: calc(45vw - 2.4rem);
-    min-height: 50vh;
-    padding: 1.2rem;
+
+  @media (max-width: 1280px) {
+    max-width: calc(25% - 3.2rem);
+    height: 36rem;
+    margin: 1.6rem auto;
   }
-  @media (max-width: 593px) {
-    min-width: calc(85vw - 2.4rem);
-    margin: 0 auto;
-    padding: 1.2rem;
+
+  @media (max-width: 999px) {
+    max-width: 38vw;
+  }
+
+  @media (max-width: 630px) {
+    min-width: 85vw;
   }
 `
 export const CoffeeInfo = styled.div`
@@ -49,6 +58,7 @@ export const OptionsStyle = styled.div`
   align-items: center;
   flex-direction: row;
   width: 100%;
+
   button {
     font-size: 1rem;
     background: ${(props) => props.theme.product['yellow-light']};
@@ -71,26 +81,6 @@ export const BuyQuantity = styled.div`
   font-family: Roboto;
   font-size: 1.6rem;
   background: ${(props) => props.theme.base['base-button']};
-  span {
-    padding: 0.2rem;
-    font-size: 1.6rem;
-  }
-  button {
-    border: none;
-    transition: all ease-in-out 600ms;
-    border-radius: 50%;
-    padding: 0.2rem;
-    display: flex;
-    background: ${(props) => props.theme.base['base-button']};
-  }
-  button:hover {
-    transition: all ease-in-out 600ms;
-    background: ${(props) => props.theme.base['base-label']};
-    border: 0.2rem solid ${(props) => props.theme.base.white};
-    svg {
-      filter: invert();
-    }
-  }
 
   @media (max-width: 591px) {
     max-width: 10.2rem;
@@ -103,41 +93,60 @@ export const BuyActions = styled.div`
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
-  h6 {
+  cursor: pointer;
+
+  p {
     font-family: 'Roboto';
     font-size: 1.4rem;
     color: ${(props) => props.theme.base['base-text']};
-    span {
-      font-family: 'baloo 2';
-      font-size: 2.4rem;
-      font-weight: 800;
-    }
   }
-  button {
+  p span {
+    font-family: 'baloo 2';
+    font-size: 2.4rem;
+    font-weight: 800;
   }
-  button:hover {
-    transition: all ease-in-out 600ms;
-    background: ${(props) => props.theme.base['base-label']};
+`
+
+export const QuantityButton = styled.button`
+  width: 18px;
+  height: 18px;
+  display: flex;
+  border: none;
+  transition: all ease-in-out 600ms;
+  border-radius: 50%;
+  padding: 0.2rem;
+  display: flex;
+  background: ${(props) => props.theme.base['base-button']};
+  span {
+    padding: 0.2rem;
+    font-size: 1.6rem;
+  }
+  &:hover {
+    border: none;
     svg {
       filter: invert();
     }
   }
 `
 
-interface IconButton {
-  background: string
-}
-export const BuyButton = styled.div<IconButton>`
-  button {
-    background: ${(props) => props.background};
-    border-radius: 6px;
-    padding: 0.8rem;
+export const BuyButton = styled.button`
+  background: ${(props) => props.theme.product['purple-dark']};
+  border-radius: 6px;
+  padding: 0.8rem;
+  border: none;
+  width: 3.8rem;
+  height: 3.8rem;
+  cursor: pointer;
+  svg {
+    color: ${(props) => props.theme.base.white};
+    margin: auto;
+  }
+  &:hover {
+    transition: all ease-in-out 600ms;
+    background: ${(props) => props.theme.product.purple};
     border: none;
-    width: 3.8rem;
-    height: 3.8rem;
     svg {
-      color: ${(props) => props.theme.base.white};
-      margin: auto;
+      filter: invert();
     }
   }
 `
