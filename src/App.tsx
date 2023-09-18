@@ -3,8 +3,7 @@ import { defaultTheme } from './styles/themes/default'
 import { GlobalStyled } from './styles/global'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
-// import { ShoppingContextProvider } from './context/ShoppingContext'
-import { ShoppingProvider } from './context/ShoppingContext2'
+import { ShoppingProvider } from './context/ShoppingContext'
 
 export const App = () => {
   return (

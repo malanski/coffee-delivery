@@ -1,117 +1,70 @@
-import { createContext, ReactNode, useState } from 'react'
-import { IProductsDataCart } from '../@types/interfaces'
+import React, { createContext, useState } from 'react'
+import { ICoffeeData } from '../Data/coffeeData'
 
-interface IShoppingContextType {
-  productsCart: IProductsDataCart[]
+interface ICartItem extends ICoffeeData {
+  price: number
+  id: number
+  quantity: number
+}
+
+interface IShoppingContext {
+  cart: ICartItem[]
+  addToCart: (item: ICoffeeData) => void
+  removeFromCart: (id: number) => void
+  updateQuantity: (id: number, quantity: number) => void
   totalItems: number
-  setProductsToCart: (product: IProductsDataCart) => void
-  removeProductCart: (id: number) => void
-  moreQntyProduct: (qntyProduct: number, price: number) => number
-  lessQntyProduct: (qntyProduct: number, price: number) => number
+  calculateTotal: () => void
 }
 
-export const ShoppingContext = createContext({} as IShoppingContextType)
+export const ShoppingContext = createContext<IShoppingContext | undefined>(
+  undefined,
+)
 
-interface IShoppingContextProviderProps {
-  children: ReactNode
-}
-
-export const ShoppingContextProvider = ({
-  children,
-}: IShoppingContextProviderProps) => {
-  const [productsCart, setProductsCart] = useState<IProductsDataCart[]>([])
+export const ShoppingProvider: React.FC<{ children: React.ReactNode }> = ({
+  children, // Corrija o tipo como React.ReactNode
+}) => {
+  const [cart, setCart] = useState<ICartItem[]>([])
   const [totalItems, setTotalItems] = useState(0)
 
-  const setProductsToCart = (product: IProductsDataCart) => {
-    const productIndex = productsCart.findIndex(
-      (productCart) => productCart.id === product.id,
-    )
+  const addToCart = (item: ICoffeeData) => {
+    const existingItem = cart.find((cartItem) => cartItem.id === item.id)
 
-    if (productIndex !== -1) {
-      productsCart[productIndex].qnty += product.qnty
+    if (existingItem) {
+      updateQuantity(existingItem.id, existingItem.quantity + 1)
     } else {
-      setProductsCart((prevState) => [...prevState, product])
+      setCart([...cart, { ...item, quantity: item.qnty }])
     }
-    calculateTotalItems()
   }
 
-  const removeProductCart = (id: number) => {
-    const productsCartWithoutProductToDelete = productsCart.filter(
-      (productCart) => productCart.id !== id,
+  const removeFromCart = (id: number) => {
+    const updatedCart = cart.filter((item) => item.id !== id)
+    setCart(updatedCart)
+  }
+
+  const updateQuantity = (id: number, quantity: number) => {
+    const updatedCart = cart.map((item) =>
+      item.id === id ? { ...item, quantity } : item,
     )
-
-    setProductsCart(productsCartWithoutProductToDelete)
-    calculateTotalItems()
+    setCart(updatedCart)
   }
 
-  // const calculateTotalItems = () => {
-  //   const totalValue = productsCart.reduce((accumulator, product) => {
-  //     const productTotal = product.price * product.qnty
-
-  //     console.log(`${product.name} Product Total: ${productTotal}`)
-  //     console.log(`${product.name} Accumulator is: ${accumulator}`)
-
-  //     return accumulator + productTotal
-  //   }, 0)
-  //   setTotalItems(totalValue)
-  //   console.log(`Total Value: ${totalValue}`)
-
-  //   calculateTotalItemsCount()
-  // }
-
-  const calculateTotalItems = () => {
-    const totalValue = productsCart.reduce((accumulator, product) => {
-      const productTotal = accumulator + product.price * product.qnty
-
-      console.log(`${product.name} Product Total: ${productTotal}`)
-      console.log(`${product.name} Accumulator is: ${accumulator}`)
-      return productTotal
-    }, 0)
-
-    setTotalItems(totalValue)
-    console.log(`Total Value: ${totalValue}`)
-  }
-
-  // const calculateTotalItemsCount = () => {
-  //   return productsCart.reduce(
-  //     (accumulator, product) => accumulator + product.qnty,
-  //     0,
-  //   )
-  // }
-
-  const moreQntyProduct = (qntyProduct: number, price: number) => {
-    const newQnty = qntyProduct + 1
-
-    // Update total items when increasing quantity
-    setTotalItems(totalItems + price)
-    // calculateTotalItems()
-    console.log(`Total price: ${price}`)
-
-    return newQnty
-  }
-
-  const lessQntyProduct = (qntyProduct: number, price: number) => {
-    if (qntyProduct === 1) return qntyProduct
-
-    const newQnty = qntyProduct - 1
-
-    // Update total items when decreasing quantity
-    setTotalItems(totalItems - price)
-    // calculateTotalItems()
-    console.log(`Total price: ${price}`)
-
-    return newQnty
+  const calculateTotal = () => {
+    const total = cart.reduce(
+      (accumulator, item) => accumulator + item.price * item.quantity,
+      0,
+    )
+    setTotalItems(total)
   }
 
   return (
     <ShoppingContext.Provider
       value={{
-        productsCart,
+        cart,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
         totalItems,
-        setProductsToCart,
-        removeProductCart,
-        moreQntyProduct,
-        lessQntyProduct,
+        calculateTotal,
       }}
     >
       {children}

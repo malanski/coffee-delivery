@@ -1,27 +1,52 @@
-# React + TypeScript + Vite
+# Coffee Delivery - E-commerce Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Coffee Delivery is an e-commerce project for buying coffee. This project uses React, React Router, Styled Components and other technologies to create an online store where users can explore and buy different types of coffee.
+  
+## Main features
 
-Currently, two official plugins are available:
+- Intuitive navigation to explore the coffee products available.
+- Adding products to the shopping cart.
+- Updating the number of products in the cart.
+- Calculating the total purchase.
+- Checkout.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies used
 
-## Expanding the ESLint configuration
+- React: JavaScript library for building user interfaces.
+- React Router: To manage the application's routes.
+- Styled Components: For styling with CSS-in-JS.
+- Vite: A fast bundler/compiler for development.
+- ESLint: Linting tool to maintain clean and consistent code.
+- TypeScript: A typed programming language that adds more security and intellisense to code.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Available scripts
 
-- Configure the top-level `parserOptions` property like this:
+- `npm install`: Installs the project dependencies.
+- `npm run dev`: Starts the development server.
+- `npm run build`: Compile the project for production.
+- `npm run lint`: Runs ESLint to check code quality.
+- `npm run preview`: Starts a server to preview the production version of the project.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Main dependencies
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- `localforage`: For local data storage.
+- `match-sorter`: A library for sorting and filtering data.
+- `phosphor-react`: Icons for user interfaces.
+- `styled-components`: Library for styling components.
+
+## How to use
+
+1. Clone this repository: `git clone https://github.com/seu-usuario/coffee-delivery.git`
+2. Navigate to the project directory: `cd coffee-delivery`
+3. Install the dependencies: `npm install`
+4. Start the development server: `npm run dev`
+
+Access the application in the browser at `http://localhost:3000`.
+
+## Contributing
+
+This is an open source project and contributions are welcome. Feel free to raise issues or send pull requests to improve this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE] file for more details.

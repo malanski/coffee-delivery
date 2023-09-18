@@ -10,7 +10,7 @@ import {
   QuantityButton,
 } from './styles'
 import { formatPrice } from '../../utils/formatPrice'
-import { ShoppingContext } from '../../context/ShoppingContext2'
+import { ShoppingContext } from '../../context/ShoppingContext'
 
 export interface IProductCardProps {
   data: {

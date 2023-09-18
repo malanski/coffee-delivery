@@ -12,7 +12,7 @@ export const CoffeeCard = styled.div`
   text-align: center;
   padding: 2.4rem;
   /* align-self: baseline; */
-  margin: 1.6rem auto;
+  /* margin: 1.6rem; */
 
   h3 {
     font-family: 'Baloo 2';
@@ -35,11 +35,12 @@ export const CoffeeCard = styled.div`
   @media (max-width: 1280px) {
     max-width: calc(25% - 3.2rem);
     height: 36rem;
-    margin: 1.6rem auto;
+    /* margin: 1.6rem auto; */
   }
 
   @media (max-width: 999px) {
-    max-width: 38vw;
+    max-width: calc(45% - 3.2rem);
+    margin: auto;
   }
 
   @media (max-width: 630px) {

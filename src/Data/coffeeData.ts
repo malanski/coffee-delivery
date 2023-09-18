@@ -47,7 +47,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Tradicional'],
     iconSrc: expresso,
     imgSrc: expressoImg,
-    price: 5,
+    price: 4.99,
     qnty: 1,
   },
   {
@@ -57,7 +57,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Tradicional'],
     iconSrc: americano,
     imgSrc: americanoImg,
-    price: 5,
+    price: 4.5,
     qnty: 1,
   },
   {
@@ -67,7 +67,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Tradicional'],
     iconSrc: cremoso,
     imgSrc: cremosoImg,
-    price: 5,
+    price: 6.99,
     qnty: 1,
   },
   {
@@ -77,7 +77,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Tradicional', 'Gelado'],
     iconSrc: gelado,
     imgSrc: geladoImg,
-    price: 5,
+    price: 6.99,
     qnty: 1,
   },
   {
@@ -87,7 +87,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Tradicional', 'Com Leite'],
     iconSrc: comLeite,
     imgSrc: comLeiteImg,
-    price: 5,
+    price: 4.5,
     qnty: 1,
   },
   {
@@ -98,7 +98,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Tradicional', 'Com Leite'],
     iconSrc: latte,
     imgSrc: latteImg,
-    price: 5,
+    price: 8.99,
     qnty: 1,
   },
   {
@@ -109,7 +109,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Tradicional', 'Com Leite'],
     iconSrc: capuccino,
     imgSrc: capuccinoImg,
-    price: 5,
+    price: 8.99,
     qnty: 1,
   },
   {
@@ -120,7 +120,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Tradicional', 'Com Leite'],
     iconSrc: macchiato,
     imgSrc: macchiatoImg,
-    price: 5,
+    price: 8.99,
     qnty: 1,
   },
   {
@@ -130,7 +130,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Tradicional', 'Com Leite'],
     iconSrc: mocaccino,
     imgSrc: mocaccinoImg,
-    price: 5,
+    price: 12.9,
     qnty: 1,
   },
   {
@@ -140,7 +140,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Especial', 'Com Leite'],
     iconSrc: chocolate,
     imgSrc: chocolateImg,
-    price: 5,
+    price: 6.99,
     qnty: 1,
   },
   {
@@ -151,7 +151,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Especial', 'Alcoólico', 'Gelado'],
     iconSrc: cubano,
     imgSrc: cubanoImg,
-    price: 5,
+    price: 12.9,
     qnty: 1,
   },
   {
@@ -161,7 +161,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Especial'],
     iconSrc: havaiano,
     imgSrc: havaianoImg,
-    price: 5,
+    price: 12.9,
     qnty: 1,
   },
   {
@@ -171,7 +171,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Especial'],
     iconSrc: arabe,
     imgSrc: arabeImg,
-    price: 5,
+    price: 12.9,
     qnty: 1,
   },
   {
@@ -181,7 +181,7 @@ const coffeeDataList: ICoffeeData[] = [
     options: ['Especial', 'Alcoólico'],
     iconSrc: irlandes,
     imgSrc: irlandesImg,
-    price: 5,
+    price: 12.9,
     qnty: 1,
   },
 ]

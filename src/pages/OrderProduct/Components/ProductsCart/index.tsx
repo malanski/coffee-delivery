@@ -6,10 +6,16 @@ import {
   TotalOrder,
   ConfirmButton,
 } from './styles'
-import { ShoppingContext } from '../../../../context/ShoppingContext2'
+import { ShoppingContext } from '../../../../context/ShoppingContext'
 import { CartItem } from './Component/CartItem'
+import { formatPrice } from '../../../../utils/formatPrice'
 
-export const ProductsCart: React.FC = () => {
+interface ICartFinalPrice {
+  deliveryTax: number
+  finalPrice: number
+}
+
+export const ProductsCart: React.FC<ICartFinalPrice> = () => {
   const shoppingContext = useContext(ShoppingContext)
   const { cart = [], totalItems = 0, calculateTotal } = shoppingContext || {}
   const navigate = useNavigate()
@@ -19,8 +25,12 @@ export const ProductsCart: React.FC = () => {
     if (calculateTotal) {
       calculateTotal()
     }
-  }, [calculateTotal, cart]) // Chame calculateTotal sempre que o carrinho (cart) for atualizado
+    // Chame calculateTotal sempre que o carrinho (cart) for atualizado
+  }, [calculateTotal, cart])
 
+  // Taxa de entrega é baseada em 2,7R$ mais 15% do valor total
+  const deliveryTax = totalItems * 0.15 + 2.7
+  const finalPrice = deliveryTax + totalItems
   return (
     <ProductsCartContainer>
       {cart.map(
@@ -46,17 +56,17 @@ export const ProductsCart: React.FC = () => {
 
       <OrderDetail>
         <p>Total de itens</p>
-        <span>R$ {totalItems.toFixed(2)}</span>
+        <span>R$ {formatPrice(totalItems)}</span>
       </OrderDetail>
 
       <OrderDetail>
         <p>Entrega</p>
-        <span>R$ 3,70</span>
+        {totalItems > 0 && <span>R$ {formatPrice(deliveryTax)}</span>}
       </OrderDetail>
 
       <TotalOrder>
         <h4>Total</h4>
-        <p>R$ {(totalItems + 3.7).toFixed(2)}</p>
+        {totalItems > 0 && <p>R$ {formatPrice(finalPrice)}</p>}
       </TotalOrder>
 
       <ConfirmButton onClick={() => navigate('/order-success')}>

@@ -4,7 +4,8 @@ export const IntroContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 4rem;
+  /* gap: 4rem; */
+  width: 100%;
 
   img {
     /* max-width: 30vw; */
@@ -34,7 +35,7 @@ export const TitlesContainer = styled.div`
     padding: 0 8rem;
     margin: 0 auto;
   }
-  @media (max-width: 48rem) {
+  @media (max-width: 480px) {
     padding: 0 4rem;
   }
 `
@@ -65,16 +66,24 @@ export const IntroTitles = styled.div`
     justify-content: center;
     flex-direction: column;
     /* width: 100%; */
-    /* h1 {
-      font-size: 2.8rem;
-    } */
+    text-align: center;
+
+    h1 {
+      font-size: 3.5rem;
+      max-width: 90%;
+      margin: auto;
+    }
+    p {
+      max-width: 100%;
+    }
   }
 
-  @media (max-width: 48rem) {
+  @media (max-width: 480px) {
     gap: 0.8rem;
 
     h1 {
       font-size: 2.8rem;
+      max-width: 100%;
     }
   }
 
@@ -93,6 +102,11 @@ export const Badges = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+
+  @media (max-width: 1150px) {
+    width: 100%;
+    justify-content: center;
+  }
 
   @media (max-width: 760px) {
     justify-content: flex-start;

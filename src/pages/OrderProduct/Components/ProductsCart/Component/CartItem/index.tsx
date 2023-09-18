@@ -13,7 +13,8 @@ import {
   Divider,
 } from './styles'
 import React, { useContext } from 'react'
-import { ShoppingContext } from '../../../../../../context/ShoppingContext2' // Importe o contexto
+import { ShoppingContext } from '../../../../../../context/ShoppingContext' // Importe o contexto
+import { formatPrice } from '../../../../../../utils/formatPrice'
 
 interface CartItemProps {
   id: number
@@ -50,6 +51,8 @@ export const CartItem: React.FC<CartItemProps> = ({
       removeFromCart(id)
     }
   }
+  const totalItem = price * qnty
+
   return (
     <>
       <CartItemContainer>
@@ -78,7 +81,7 @@ export const CartItem: React.FC<CartItemProps> = ({
           </div>
         </ItemContainer>
 
-        <Price>R$ {price * qnty}</Price>
+        <Price>R$ {formatPrice(totalItem)}</Price>
       </CartItemContainer>
       <Divider></Divider>
     </>

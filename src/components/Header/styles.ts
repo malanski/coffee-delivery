@@ -82,4 +82,7 @@ export const CartAmount = styled.span`
   right: -8.345px;
   top: -8px;
   border-radius: 50%;
+  @media (max-width: 399px) {
+    right: -1px;
+  }
 `
