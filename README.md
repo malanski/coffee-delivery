@@ -36,12 +36,12 @@ Coffee Delivery is an e-commerce project for buying coffee. This project uses Re
 
 ## How to use
 
-1. Clone this repository: `git clone https://github.com/seu-usuario/coffee-delivery.git`
+1. Clone this repository: `git clone https://github.com/malanski/coffee-delivery.git`
 2. Navigate to the project directory: `cd coffee-delivery`
 3. Install the dependencies: `npm install`
 4. Start the development server: `npm run dev`
 
-Access the application in the browser at `http://localhost:3000`.
+Access the application in the browser at `http://localhost:4000`.
 
 ## Contributing
 

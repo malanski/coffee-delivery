@@ -3,7 +3,9 @@ import styled from 'styled-components'
 export const CoffeeCard = styled.div`
   background: ${(props) => props.theme.base['base-card']};
   border-radius: 6px 36px 6px 36px;
-  max-width: 25.6rem;
+  /* max-width: 25.6rem; */
+  max-width: calc(25% - 3.2rem);
+
   height: 31rem;
   display: flex;
   flex-direction: column;
@@ -33,14 +35,17 @@ export const CoffeeCard = styled.div`
   }
 
   @media (max-width: 1280px) {
-    max-width: calc(25% - 3.2rem);
-    height: 36rem;
+    height: 37rem;
     /* margin: 1.6rem auto; */
+  }
+  @media (max-width: 1080px) {
+    padding: 1.4rem;
   }
 
   @media (max-width: 999px) {
     max-width: calc(45% - 3.2rem);
     margin: auto;
+    padding: 2.4rem;
   }
 
   @media (max-width: 630px) {

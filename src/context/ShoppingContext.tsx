@@ -4,21 +4,19 @@ import { ICoffeeData } from '../Data/coffeeData'
 interface ICartItem extends ICoffeeData {
   price: number
   id: number
-  quantity: number
+  cartQuantity: number
 }
 
 interface IShoppingContext {
   cart: ICartItem[]
   addToCart: (item: ICoffeeData) => void
   removeFromCart: (id: number) => void
-  updateQuantity: (id: number, quantity: number) => void
+  updateQuantity: (id: number, cartQuantity: number) => void
   totalItems: number
   calculateTotal: () => void
 }
 
-export const ShoppingContext = createContext<IShoppingContext | undefined>(
-  undefined,
-)
+export const ShoppingContext = createContext({} as IShoppingContext)
 
 export const ShoppingProvider: React.FC<{ children: React.ReactNode }> = ({
   children, // Corrija o tipo como React.ReactNode
@@ -30,9 +28,9 @@ export const ShoppingProvider: React.FC<{ children: React.ReactNode }> = ({
     const existingItem = cart.find((cartItem) => cartItem.id === item.id)
 
     if (existingItem) {
-      updateQuantity(existingItem.id, existingItem.quantity + 1)
+      updateQuantity(existingItem.id, existingItem.cartQuantity + 1)
     } else {
-      setCart([...cart, { ...item, quantity: item.qnty }])
+      setCart([...cart, { ...item, cartQuantity: item.qnty }])
     }
   }
 
@@ -41,16 +39,16 @@ export const ShoppingProvider: React.FC<{ children: React.ReactNode }> = ({
     setCart(updatedCart)
   }
 
-  const updateQuantity = (id: number, quantity: number) => {
+  const updateQuantity = (id: number, cartQuantity: number) => {
     const updatedCart = cart.map((item) =>
-      item.id === id ? { ...item, quantity } : item,
+      item.id === id ? { ...item, cartQuantity } : item,
     )
     setCart(updatedCart)
   }
 
   const calculateTotal = () => {
     const total = cart.reduce(
-      (accumulator, item) => accumulator + item.price * item.quantity,
+      (accumulator, item) => accumulator + item.price * item.cartQuantity,
       0,
     )
     setTotalItems(total)

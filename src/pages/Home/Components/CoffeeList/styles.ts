@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const CoffeeListStyles = styled.section`
   width: 100%;
-  width: calc(100% + 3.2rem);
+  /* width: calc(100% + 3.2rem); */
 
   display: flex;
   flex-direction: column;

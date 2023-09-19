@@ -5,6 +5,7 @@ export const ProductsCartContainer = styled.div`
   padding: 4rem;
   border-radius: 0.6rem 4rem;
   width: 48rem;
+  /* min-height: 100%; */
   @media (max-width: 1200px) {
     border-radius: 6px;
     width: 100%;
@@ -31,7 +32,19 @@ export const TotalOrder = styled.div`
   line-height: 130%;
   margin-bottom: 2.4rem;
 `
-
+export const EmptyCart = styled.h3`
+  font-size: 700;
+  color: ${(props) => props.theme.base['base-text']};
+  text-align: center;
+  width: 100%;
+  /* padding: 6.4rem 0; */
+  margin-top: 9rem;
+  margin-bottom: 13rem;
+  a {
+    color: ${(props) => props.theme.product['yellow-dark']};
+    cursor: pointer;
+  }
+`
 export const ConfirmButton = styled.button`
   display: flex;
   padding: 1.2rem 0.8rem;
@@ -50,7 +63,12 @@ export const ConfirmButton = styled.button`
   width: 100%;
   transition: ease-out 800ms;
 
-  &:hover {
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
     background: ${(props) => props.theme.product['yellow-dark']};
     transition: ease-in 200ms;
   }

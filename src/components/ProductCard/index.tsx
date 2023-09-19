@@ -66,15 +66,20 @@ export const ProductCard = (props: IProductCardProps) => {
     if (shoppingContext) {
       const productInCart = shoppingContext.cart.find((item) => item.id === id)
       if (productInCart) {
-        setQntyProductCard(productInCart.quantity)
+        setQntyProductCard(productInCart.cartQuantity)
       }
     }
   }, [shoppingContext, id])
+
   const priceFormat = formatPrice(price)
 
   return (
     <CoffeeCard>
-      <img src={`${iconSrc}`} alt={name}></img>
+      <img
+        src={`${iconSrc}`}
+        alt={`Foto de um ${name}`}
+        title={`Que tal um ${name}`}
+      ></img>
 
       <CoffeeInfo>
         <OptionsStyle>

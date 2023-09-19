@@ -35,13 +35,11 @@ export const CartItem: React.FC<CartItemProps> = ({
   const { updateQuantity, removeFromCart } = useContext(ShoppingContext) || {}
 
   const moreProducts = () => {
-    if (updateQuantity) {
-      updateQuantity(id, qnty + 1)
-    }
+    updateQuantity(id, qnty + 1)
   }
 
   const lessProducts = () => {
-    if (updateQuantity && qnty > 1) {
+    if (qnty > 1) {
       updateQuantity(id, qnty - 1)
     }
   }
@@ -57,7 +55,11 @@ export const CartItem: React.FC<CartItemProps> = ({
     <>
       <CartItemContainer>
         <ItemContainer>
-          <img src={iconSrc} alt="Café Expresso" />
+          <img
+            src={iconSrc}
+            alt={`Foto de um ${name}`}
+            title={`Um delicioso ${name} pra você`}
+          />
           <div>
             <p>{name}</p>
             <ItemOptions>

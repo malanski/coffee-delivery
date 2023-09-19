@@ -5,6 +5,7 @@ import {
   OrderDetail,
   TotalOrder,
   ConfirmButton,
+  EmptyCart,
 } from './styles'
 import { ShoppingContext } from '../../../../context/ShoppingContext'
 import { CartItem } from './Component/CartItem'
@@ -20,7 +21,7 @@ export const ProductsCart: React.FC<ICartFinalPrice> = () => {
   const { cart = [], totalItems = 0, calculateTotal } = shoppingContext || {}
   const navigate = useNavigate()
 
-  // Use o useEffect para chamar calculateTotal quando o componente for montado
+  // useEffect para chamar calculateTotal quando o componente for montado
   useEffect(() => {
     if (calculateTotal) {
       calculateTotal()
@@ -31,45 +32,59 @@ export const ProductsCart: React.FC<ICartFinalPrice> = () => {
   // Taxa de entrega é baseada em 2,7R$ mais 15% do valor total
   const deliveryTax = totalItems * 0.15 + 2.7
   const finalPrice = deliveryTax + totalItems
+  const isEmpty = cart.length === 0
+
   return (
     <ProductsCartContainer>
-      {cart.map(
-        (product: {
-          id: number
-          name: string
-          price: number
-          options: string[]
-          iconSrc: string
-          quantity: number
-        }) => (
-          <CartItem
-            key={product.id as number}
-            id={product.id as number}
-            name={product.name}
-            price={product.price}
-            options={product.options}
-            iconSrc={product.iconSrc}
-            qnty={product.quantity}
-          />
-        ),
+      {isEmpty ? (
+        <EmptyCart>
+          O seu carrinho vazio, que tal{' '}
+          <a onClick={() => navigate('/')}>um cafezinho!</a>
+        </EmptyCart>
+      ) : (
+        <>
+          {cart.map(
+            (product: {
+              id: number
+              name: string
+              price: number
+              options: string[]
+              iconSrc: string
+              cartQuantity: number
+            }) => (
+              <CartItem
+                key={product.id as number}
+                id={product.id as number}
+                name={product.name}
+                price={product.price}
+                options={product.options}
+                iconSrc={product.iconSrc}
+                qnty={product.cartQuantity}
+              />
+            ),
+          )}
+          <OrderDetail>
+            <p>Total de itens</p>
+            <span>R$ {formatPrice(totalItems)}</span>
+          </OrderDetail>
+
+          <OrderDetail>
+            <p>Entrega</p>
+            <span>R$ {formatPrice(deliveryTax)}</span>
+          </OrderDetail>
+
+          <TotalOrder>
+            <h4>Total</h4>
+            <p>R$ {formatPrice(finalPrice)}</p>
+          </TotalOrder>
+        </>
       )}
 
-      <OrderDetail>
-        <p>Total de itens</p>
-        <span>R$ {formatPrice(totalItems)}</span>
-      </OrderDetail>
-
-      <OrderDetail>
-        <p>Entrega</p>
-        {totalItems > 0 && <span>R$ {formatPrice(deliveryTax)}</span>}
-      </OrderDetail>
-
-      <TotalOrder>
-        <h4>Total</h4>
-        {totalItems > 0 && <p>R$ {formatPrice(finalPrice)}</p>}
-      </TotalOrder>
-
-      <ConfirmButton onClick={() => navigate('/order-success')}>
+      <ConfirmButton
+        title="Clique aqui para confirmar seu pedido"
+        disabled={isEmpty}
+        onClick={() => navigate('/order-success')}
+      >
         Confirmar Pedido
       </ConfirmButton>
     </ProductsCartContainer>

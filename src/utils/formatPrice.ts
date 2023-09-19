@@ -1,5 +1,5 @@
-export const formatPrice = (price: number): string => {
-  const priceFormat = price.toFixed(2).toString().replace('.', ',')
+export const formatPrice = (value: number): string => {
+  const priceFormat = value.toFixed(2).toString().replace('.', ',')
 
   return priceFormat
 }
