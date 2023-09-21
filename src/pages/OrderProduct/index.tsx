@@ -6,20 +6,21 @@ import { OrderContainer, OrderUserData, Subtitle } from './styles'
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { IDataForm } from '../../@types/interfaces'
+import { ShoppingContext } from '../../context/ShoppingContext'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
 
 export const DeliveryFormValidationSchema = zod.z.object({
   zipCode: zod.z
-    .number({ invalid_type_error: 'O CEP deve conter apenas números' })
-    .min(9, 'O cep deve conter nove dígitos no mínimo')
-    .max(11, 'O cep deve conter onze dígitos no máximo'),
+    .string()
+    .min(8, 'O cep deve conter oito dígitos no mínimo')
+    .max(9, 'O cep deve conter nove dígitos no máximo'),
 
   streetName: zod.z
     .string()
     .min(4, 'O mome da rua deve conter pelo menos 4 caracteres'),
 
-  streetNumber: zod.z.number({
-    invalid_type_error: 'O número da rua deve conter apenas números',
-  }),
+  streetNumber: zod.z.string(),
   complement: zod.z.string(),
   district: zod.z
     .string()
@@ -34,16 +35,24 @@ export const DeliveryFormValidationSchema = zod.z.object({
 })
 
 export const OrderProducts = () => {
-  const { handleSubmit, register, formState } = useForm<IDataForm>({
+  const { register, handleSubmit, formState } = useForm<IDataForm>({
     resolver: zodResolver(DeliveryFormValidationSchema),
   })
-  const onSubmit: SubmitHandler<IDataForm> = (data) => {
-    console.log(data)
+
+  const { selectedPayment, setDataFormShopping } = useContext(ShoppingContext)
+  const navigate = useNavigate()
+
+  const handleCreateNewCycle: SubmitHandler<IDataForm> = (data) => {
+    if (selectedPayment) {
+      data.paymentMethod = selectedPayment
+
+      setDataFormShopping(data)
+      navigate('/order-success')
+    }
   }
-  // console.log(formState.errors)
   return (
     <OrderContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(handleCreateNewCycle)}>
         <OrderUserData>
           <Subtitle>Complete seu pedido</Subtitle>
 
@@ -53,7 +62,7 @@ export const OrderProducts = () => {
 
         <OrderUserData>
           <Subtitle>Cafés selecionados</Subtitle>
-          <ProductsCart onSubmit={handleSubmit(onSubmit)} />
+          <ProductsCart />
         </OrderUserData>
       </form>
     </OrderContainer>

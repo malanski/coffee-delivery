@@ -11,20 +11,15 @@ import { ShoppingContext } from '../../../../context/ShoppingContext'
 import { CartItem } from './Component/CartItem'
 import { formatPrice } from '../../../../utils/formatPrice'
 
-interface ProductsCartProps {
-  onSubmit: () => void // Adicione esta prop para receber a função onSubmit
-}
-export const ProductsCart: React.FC<ProductsCartProps> = ({ onSubmit }) => {
+export const ProductsCart: React.FC = () => {
   const shoppingContext = useContext(ShoppingContext)
   const { cart = [], totalItems = 0, calculateTotal } = shoppingContext || {}
   const navigate = useNavigate()
 
-  // useEffect para chamar calculateTotal quando o componente for montado
   useEffect(() => {
     if (calculateTotal) {
       calculateTotal()
     }
-    // Chame calculateTotal sempre que o carrinho (cart) for atualizado
   }, [calculateTotal, cart])
 
   const deliveryTax = totalItems * 0.15 + 2.7
@@ -80,9 +75,7 @@ export const ProductsCart: React.FC<ProductsCartProps> = ({ onSubmit }) => {
       <ConfirmButton
         title="Clique aqui para confirmar seu pedido"
         disabled={isEmpty}
-        // onClick={() => navigate('/order-success')}
         type="submit"
-        onClick={onSubmit}
       >
         Confirmar Pedido
       </ConfirmButton>

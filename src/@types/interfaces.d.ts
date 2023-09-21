@@ -11,4 +11,5 @@ interface IDataForm {
   district: string
   city: string
   county: string
+  paymentMethod?: string
 }

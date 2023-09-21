@@ -65,13 +65,13 @@ export const CartItem: React.FC<CartItemProps> = ({
             <p>{name}</p>
             <ItemOptions>
               <ItemQuantity>
-                <QuantityButton onClick={lessProducts}>
+                <QuantityButton type="button" onClick={lessProducts}>
                   <Minus size={14} />
                 </QuantityButton>
 
                 <span>{qnty}</span>
 
-                <QuantityButton onClick={moreProducts}>
+                <QuantityButton type="button" onClick={moreProducts}>
                   <Plus size={14} />
                 </QuantityButton>
               </ItemQuantity>

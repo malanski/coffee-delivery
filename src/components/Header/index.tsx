@@ -14,7 +14,7 @@ import { ShoppingContext } from '../../context/ShoppingContext'
 
 export function Header() {
   // Desestrutura o objeto do contexto
-  const { cart = [] } = useContext(ShoppingContext) || {}
+  const { cart = [], dataFormShopping } = useContext(ShoppingContext) || {}
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export function Header() {
       <UserActions>
         <UserLocation>
           <MapPin size={22} weight="fill" />
-          <span> Porto Alegre</span>
+          <span>{dataFormShopping?.city}</span>
         </UserLocation>
 
         <CartButton onClick={() => navigate('/order-products')}>

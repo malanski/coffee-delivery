@@ -10,9 +10,13 @@ import {
 import { useTheme } from 'styled-components'
 
 import illustration from '../../assets/Illustration.png'
+import { useContext } from 'react'
+import { ShoppingContext } from '../../context/ShoppingContext'
 
 export const OrderSuccess = () => {
   const theme = useTheme()
+
+  const { dataFormShopping } = useContext(ShoppingContext)
 
   return (
     <>
@@ -29,8 +33,12 @@ export const OrderSuccess = () => {
                 <MapPin size={16} weight="fill" />
               </span>
               <p>
-                Entrega em <b>Rua João Daniel Martinelli, 102</b> Farrapos -
-                Porto Alegre, RS
+                Entrega em{' '}
+                <b>
+                  {dataFormShopping?.streetName},{' '}
+                  {dataFormShopping?.streetNumber}
+                </b>{' '}
+                {dataFormShopping?.county} - {dataFormShopping?.city}, RS
               </p>
             </OrderSuccessData>
 
@@ -50,7 +58,7 @@ export const OrderSuccess = () => {
               </span>
               <p>
                 Pagamento na entrega <br />
-                <b>Cartão de Crédito</b>
+                <b>{dataFormShopping?.paymentMethod}</b>
               </p>
             </OrderSuccessData>
           </OrderSuccessInfo>

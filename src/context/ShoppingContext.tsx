@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 import { ICoffeeData } from '../Data/coffeeData'
-import { PaymentMethodType } from '../@types/interfaces'
+import { IDataForm, PaymentMethodType } from '../@types/interfaces'
 
 interface ICartItem extends ICoffeeData {
   price: number
@@ -16,7 +16,9 @@ interface IShoppingContext {
   totalItems: number
   calculateTotal: () => void
   selectedPayment: PaymentMethodType | null
+  dataFormShopping: IDataForm | null
   setSelectedPayment: (paymentMethod: PaymentMethodType) => void
+  setDataFormShopping: (dataFormShopping: IDataForm) => void
 }
 
 export const ShoppingContext = createContext({} as IShoppingContext)
@@ -28,6 +30,9 @@ export const ShoppingProvider: React.FC<{ children: React.ReactNode }> = ({
   const [totalItems, setTotalItems] = useState(0)
   const [selectedPayment, setSelectedPayment] =
     useState<PaymentMethodType | null>(null)
+  const [dataFormShopping, setDataFormShopping] = useState<IDataForm | null>(
+    null,
+  )
   const addToCart = (item: ICoffeeData) => {
     const existingItem = cart.find((cartItem) => cartItem.id === item.id)
 
@@ -69,6 +74,8 @@ export const ShoppingProvider: React.FC<{ children: React.ReactNode }> = ({
         calculateTotal,
         selectedPayment,
         setSelectedPayment,
+        dataFormShopping,
+        setDataFormShopping,
       }}
     >
       {children}

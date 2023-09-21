@@ -1,23 +1,32 @@
 import { MapPinLine } from 'phosphor-react'
-import { AddressInput, AddressInputContainer, InputSection } from './styles'
+import {
+  AddressInput,
+  AddressInputContainer,
+  ErrorMessage,
+  InputSection,
+  OptionalInput,
+} from './styles'
 import {
   OrderComponentsContainer,
   OrderComponentsHeader,
   OrderComponentsTitle,
 } from '../../styles'
 import { useTheme } from 'styled-components'
-import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
+import { FormState, UseFormRegister } from 'react-hook-form'
 import { IDataForm } from '../../../../@types/interfaces'
+import { useState } from 'react'
 
 export const DeliveryAddress = ({
   register,
   formState,
 }: {
   register: UseFormRegister<IDataForm>
-  formState: FormState<FieldValues>
+  formState: FormState<IDataForm>
 }) => {
   const theme = useTheme()
+  const errors = formState.errors
 
+  const [dataComplement, setDataComplement] = useState('')
   return (
     <OrderComponentsContainer>
       <OrderComponentsHeader $colorsvg={theme.product.purple}>
@@ -36,77 +45,81 @@ export const DeliveryAddress = ({
           width="38%"
           {...register('zipCode')}
         ></AddressInput>
-        {formState.errors?.zipCode &&
-          typeof formState.errors.zipCode.message === 'string' && (
-            <span>CEP inválido. {formState.errors.zipCode.message}</span>
-          )}
+        {errors?.zipCode && (
+          <ErrorMessage>CEP inválido. {errors.zipCode.message}</ErrorMessage>
+        )}
 
         <AddressInput
           placeholder="Rua"
           {...register('streetName')}
         ></AddressInput>
-        {formState.errors?.streetName &&
-          typeof formState.errors.streetName.message === 'string' && (
-            <span>Rua inválida. {formState.errors.streetName.message}</span>
-          )}
+        {errors?.streetName && (
+          <ErrorMessage>Rua inválida. {errors.streetName.message}</ErrorMessage>
+        )}
 
-        <InputSection>
+        <InputSection $direction={errors?.streetNumber ? 'column' : 'row'}>
           <AddressInput
             required
             placeholder="Número"
             width="38%"
             {...register('streetNumber')}
           ></AddressInput>
-          {formState.errors?.streetNumber &&
-            typeof formState.errors.streetNumber.message === 'string' && (
-              <span>
-                Número da rua inválido. {formState.errors.streetNumber.message}
-              </span>
-            )}
+          {errors?.streetNumber && (
+            <ErrorMessage>
+              Número da rua inválido. {errors.streetNumber.message}
+            </ErrorMessage>
+          )}
 
           <AddressInput
             placeholder="Complemento (Opcional)"
             width="100%"
             {...register('complement')}
-          ></AddressInput>
+            onChange={(e) => setDataComplement(e.target.value)}
+          />
+          {dataComplement.length === 0 && (
+            <OptionalInput>Opcional</OptionalInput>
+          )}
         </InputSection>
 
-        <InputSection>
+        <InputSection $direction={errors?.district ? 'column' : 'row'}>
           <AddressInput
             required
             placeholder="Bairro"
             width="38%"
             {...register('district')}
           ></AddressInput>
-          {formState.errors?.district &&
-            typeof formState.errors.district.message === 'string' && (
-              <span>Bairro inválido. {formState.errors.district.message}</span>
-            )}
+          {errors?.district && (
+            <ErrorMessage>
+              Bairro inválido. {errors.district.message}
+            </ErrorMessage>
+          )}
 
-          <div>
+          <InputSection
+            $direction={errors?.city || errors?.county ? 'column' : 'row'}
+          >
             <AddressInput
               required
               placeholder="Cidade"
               width="75%"
               {...register('city')}
             ></AddressInput>
-            {formState.errors?.city &&
-              typeof formState.errors.city.message === 'string' && (
-                <span>Cidade inválida. {formState.errors.city.message}</span>
-              )}
+            {errors?.city && (
+              <ErrorMessage>
+                Cidade inválida. {errors.city.message}
+              </ErrorMessage>
+            )}
 
             <AddressInput
               placeholder="UF"
               width="25%"
               {...register('county')}
             ></AddressInput>
-            {formState.errors?.county &&
-              typeof formState.errors.county.message === 'string' && (
-                <span>
-                  Estado UF inválido. {formState.errors.county.message}
-                </span>
-              )}
-          </div>
+            {errors?.county && (
+              <ErrorMessage>
+                Estado UF inválido. {errors.county.message}
+              </ErrorMessage>
+            )}
+          </InputSection>
         </InputSection>
       </AddressInputContainer>
     </OrderComponentsContainer>
