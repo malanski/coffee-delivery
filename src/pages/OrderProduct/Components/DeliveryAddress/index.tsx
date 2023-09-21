@@ -6,8 +6,16 @@ import {
   OrderComponentsTitle,
 } from '../../styles'
 import { useTheme } from 'styled-components'
+import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
+import { IDataForm } from '../../../../@types/interfaces'
 
-export const DeliveryAddress = () => {
+export const DeliveryAddress = ({
+  register,
+  formState,
+}: {
+  register: UseFormRegister<IDataForm>
+  formState: FormState<FieldValues>
+}) => {
   const theme = useTheme()
 
   return (
@@ -22,35 +30,82 @@ export const DeliveryAddress = () => {
       </OrderComponentsHeader>
 
       <AddressInputContainer>
-        <AddressInput name="CEP" placeholder="CEP" width="38%"></AddressInput>
-        <AddressInput name="Rua" placeholder="Rua"></AddressInput>
+        <AddressInput
+          required
+          placeholder="CEP"
+          width="38%"
+          {...register('zipCode')}
+        ></AddressInput>
+        {formState.errors?.zipCode &&
+          typeof formState.errors.zipCode.message === 'string' && (
+            <span>CEP inválido. {formState.errors.zipCode.message}</span>
+          )}
+
+        <AddressInput
+          placeholder="Rua"
+          {...register('streetName')}
+        ></AddressInput>
+        {formState.errors?.streetName &&
+          typeof formState.errors.streetName.message === 'string' && (
+            <span>Rua inválida. {formState.errors.streetName.message}</span>
+          )}
 
         <InputSection>
           <AddressInput
-            name="Numero"
+            required
             placeholder="Número"
             width="38%"
+            {...register('streetNumber')}
           ></AddressInput>
+          {formState.errors?.streetNumber &&
+            typeof formState.errors.streetNumber.message === 'string' && (
+              <span>
+                Número da rua inválido. {formState.errors.streetNumber.message}
+              </span>
+            )}
+
           <AddressInput
-            name="Complemento"
             placeholder="Complemento (Opcional)"
             width="100%"
+            {...register('complement')}
           ></AddressInput>
         </InputSection>
 
         <InputSection>
           <AddressInput
-            name="Bairro"
+            required
             placeholder="Bairro"
             width="38%"
+            {...register('district')}
           ></AddressInput>
+          {formState.errors?.district &&
+            typeof formState.errors.district.message === 'string' && (
+              <span>Bairro inválido. {formState.errors.district.message}</span>
+            )}
+
           <div>
             <AddressInput
-              name="Cidade"
+              required
               placeholder="Cidade"
               width="75%"
+              {...register('city')}
             ></AddressInput>
-            <AddressInput name="UF" placeholder="UF" width="25%"></AddressInput>
+            {formState.errors?.city &&
+              typeof formState.errors.city.message === 'string' && (
+                <span>Cidade inválida. {formState.errors.city.message}</span>
+              )}
+
+            <AddressInput
+              placeholder="UF"
+              width="25%"
+              {...register('county')}
+            ></AddressInput>
+            {formState.errors?.county &&
+              typeof formState.errors.county.message === 'string' && (
+                <span>
+                  Estado UF inválido. {formState.errors.county.message}
+                </span>
+              )}
           </div>
         </InputSection>
       </AddressInputContainer>

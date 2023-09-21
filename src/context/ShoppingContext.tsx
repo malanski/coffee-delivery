@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react'
 import { ICoffeeData } from '../Data/coffeeData'
+import { PaymentMethodType } from '../@types/interfaces'
 
 interface ICartItem extends ICoffeeData {
   price: number
@@ -14,6 +15,8 @@ interface IShoppingContext {
   updateQuantity: (id: number, cartQuantity: number) => void
   totalItems: number
   calculateTotal: () => void
+  selectedPayment: PaymentMethodType | null
+  setSelectedPayment: (paymentMethod: PaymentMethodType) => void
 }
 
 export const ShoppingContext = createContext({} as IShoppingContext)
@@ -23,7 +26,8 @@ export const ShoppingProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [cart, setCart] = useState<ICartItem[]>([])
   const [totalItems, setTotalItems] = useState(0)
-
+  const [selectedPayment, setSelectedPayment] =
+    useState<PaymentMethodType | null>(null)
   const addToCart = (item: ICoffeeData) => {
     const existingItem = cart.find((cartItem) => cartItem.id === item.id)
 
@@ -63,6 +67,8 @@ export const ShoppingProvider: React.FC<{ children: React.ReactNode }> = ({
         updateQuantity,
         totalItems,
         calculateTotal,
+        selectedPayment,
+        setSelectedPayment,
       }}
     >
       {children}

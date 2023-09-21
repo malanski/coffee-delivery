@@ -23,6 +23,6 @@ export const LayoutContainer = styled.div`
   }
 
   @media (max-width: 399px) {
-    padding: 0 0rem;
+    padding: 0 0.2rem;
   }
 `

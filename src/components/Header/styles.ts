@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   width: 100%;
   padding: 3.2rem 0;
   margin-bottom: 0.4rem;
-
+  /* position: relative; */
   img {
     width: 8.5rem;
     height: 4rem;
@@ -20,6 +20,14 @@ export const HeaderContainer = styled.header`
       height: 4rem;
     }
   }
+
+  @media (max-width: 375px) {
+    padding: 1.6rem 0;
+    img {
+      width: 7.5rem;
+      height: 3rem;
+    }
+  }
 `
 
 export const UserActions = styled.div`
@@ -27,6 +35,12 @@ export const UserActions = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 1.2rem;
+  /* position: fixed;
+  top: 0;
+  right: 0; */
+  @media (max-width: 375px) {
+    gap: 0.6rem;
+  }
 `
 
 export const UserLocation = styled.div`

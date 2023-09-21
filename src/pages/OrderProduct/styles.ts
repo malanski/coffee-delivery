@@ -1,14 +1,23 @@
 import { styled } from 'styled-components'
 
 export const OrderContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  gap: 3.2rem;
-  padding: 1rem;
+  form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 3.2rem;
+    padding: 1rem;
+  }
   @media (max-width: 1200px) {
-    flex-direction: column;
+    form {
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 373px) {
+    form {
+      padding: 0.5rem;
+    }
   }
 `
 

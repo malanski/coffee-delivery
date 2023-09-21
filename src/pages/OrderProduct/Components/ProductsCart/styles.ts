@@ -10,7 +10,14 @@ export const ProductsCartContainer = styled.div`
     border-radius: 6px;
     width: 100%;
   }
-  @media (max-width: 1050px) {
+  @media (max-width: 440px) {
+    padding: 2rem;
+  }
+  @media (max-width: 399px) {
+    padding: 1rem;
+  }
+  @media (max-width: 373px) {
+    padding: 0.5rem;
   }
 `
 export const OrderDetail = styled.div`

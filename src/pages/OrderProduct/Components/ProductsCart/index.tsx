@@ -11,12 +11,10 @@ import { ShoppingContext } from '../../../../context/ShoppingContext'
 import { CartItem } from './Component/CartItem'
 import { formatPrice } from '../../../../utils/formatPrice'
 
-interface ICartFinalPrice {
-  deliveryTax: number
-  finalPrice: number
+interface ProductsCartProps {
+  onSubmit: () => void // Adicione esta prop para receber a função onSubmit
 }
-
-export const ProductsCart: React.FC<ICartFinalPrice> = () => {
+export const ProductsCart: React.FC<ProductsCartProps> = ({ onSubmit }) => {
   const shoppingContext = useContext(ShoppingContext)
   const { cart = [], totalItems = 0, calculateTotal } = shoppingContext || {}
   const navigate = useNavigate()
@@ -29,7 +27,6 @@ export const ProductsCart: React.FC<ICartFinalPrice> = () => {
     // Chame calculateTotal sempre que o carrinho (cart) for atualizado
   }, [calculateTotal, cart])
 
-  // Taxa de entrega é baseada em 2,7R$ mais 15% do valor total
   const deliveryTax = totalItems * 0.15 + 2.7
   const finalPrice = deliveryTax + totalItems
   const isEmpty = cart.length === 0
@@ -83,7 +80,9 @@ export const ProductsCart: React.FC<ICartFinalPrice> = () => {
       <ConfirmButton
         title="Clique aqui para confirmar seu pedido"
         disabled={isEmpty}
-        onClick={() => navigate('/order-success')}
+        // onClick={() => navigate('/order-success')}
+        type="submit"
+        onClick={onSubmit}
       >
         Confirmar Pedido
       </ConfirmButton>

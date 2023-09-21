@@ -1,19 +1,14 @@
-export interface IProductsDataCart {
-  id: number
-  name: string
-  options: string[]
-  iconSrc: string
-  price: number
-  qnty: number
-}
+export type PaymentMethodType =
+  | 'Cartão de Crédito'
+  | 'Cartão de Debito'
+  | 'Dinheiro'
 
-export interface ICoffeeData {
-  id: number
-  name: string
-  description: string
-  options: string[]
-  iconSrc: string
-  imgSrc?: string
-  price: number
-  qnty: number
+interface IDataForm {
+  zipCode: string
+  streetName: string
+  streetNumber: string
+  complement: string
+  district: string
+  city: string
+  county: string
 }

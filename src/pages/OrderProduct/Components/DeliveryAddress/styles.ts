@@ -9,6 +9,11 @@ export const AddressInputContainer = styled.div`
   justify-content: center;
   gap: 1.6rem;
   width: 100%;
+  span {
+    color: red;
+    text-align: justify;
+    width: 100%;
+  }
 `
 export const AddressInput = styled.input<IAddressInputProps>`
   background: ${(props) => props.theme.base['base-input']};

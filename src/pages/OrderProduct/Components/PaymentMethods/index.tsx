@@ -5,11 +5,19 @@ import {
   OrderComponentsTitle,
 } from '../../styles'
 import { useTheme } from 'styled-components'
-import { PaymentButtonContainer, PaymentButtons } from './styles'
+import { PaymentButtonContainer } from './styles'
+import { PaymentButtons } from './Components/PaymentButtons'
+import { PaymentMethodType } from '../../../../@types/interfaces'
+import { useContext } from 'react'
+import { ShoppingContext } from '../../../../context/ShoppingContext'
 
 export const PaymentMethods = () => {
   const theme = useTheme()
-
+  const { setSelectedPayment, selectedPayment } = useContext(ShoppingContext)
+  const handlePaymentClick = (paymentMethod: PaymentMethodType) => {
+    setSelectedPayment(paymentMethod)
+    console.log(paymentMethod)
+  }
   return (
     <OrderComponentsContainer>
       <OrderComponentsHeader $colorsvg={theme.product.purple}>
@@ -24,15 +32,24 @@ export const PaymentMethods = () => {
       </OrderComponentsHeader>
 
       <PaymentButtonContainer>
-        <PaymentButtons>
+        <PaymentButtons
+          onClick={() => handlePaymentClick('Cartão de Crédito')}
+          $isSelected={selectedPayment === 'Cartão de Crédito'}
+        >
           <CreditCard size={16} />
           Cartão de Crédito
         </PaymentButtons>
-        <PaymentButtons>
+        <PaymentButtons
+          onClick={() => handlePaymentClick('Cartão de Debito')}
+          $isSelected={selectedPayment === 'Cartão de Debito'}
+        >
           <Bank size={16} />
           Cartão de Débito
         </PaymentButtons>
-        <PaymentButtons>
+        <PaymentButtons
+          onClick={() => handlePaymentClick('Dinheiro')}
+          $isSelected={selectedPayment === 'Dinheiro'}
+        >
           <Money size={16} />
           Dinheiro
         </PaymentButtons>

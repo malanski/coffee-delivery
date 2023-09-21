@@ -11,6 +11,7 @@ import {
   TrashButton,
   Price,
   Divider,
+  ItemOptionsContainer,
 } from './styles'
 import React, { useContext } from 'react'
 import { ShoppingContext } from '../../../../../../context/ShoppingContext' // Importe o contexto
@@ -60,7 +61,7 @@ export const CartItem: React.FC<CartItemProps> = ({
             alt={`Foto de um ${name}`}
             title={`Um delicioso ${name} pra você`}
           />
-          <div>
+          <ItemOptionsContainer>
             <p>{name}</p>
             <ItemOptions>
               <ItemQuantity>
@@ -80,7 +81,7 @@ export const CartItem: React.FC<CartItemProps> = ({
                 Remover
               </TrashButton>
             </ItemOptions>
-          </div>
+          </ItemOptionsContainer>
         </ItemContainer>
 
         <Price>R$ {formatPrice(totalItem)}</Price>
